@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row align-items-center justify-content-center vh-75">
+        <div class="col-12 col-md-6 col-lg-5">
+            <div class="border rounded p-3 mb-6">
+                <p>
+                    Entre com suas credênciais
+                </p>
+
+                <form [formGroup]="formLogin" class="needs-validation was-validated" (submit)="submit()" novalidate>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="name">Usuario</label>
+                                <input formControlName="name" type="text" class="form-control" required autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <div class="form-group">
+                                <label for="password">Senha</label>
+                                <input formControlName="password" type="password" class="form-control" required autocomplete="off">
+                            </div>
+                        </div>
+    
+                        <div class="col-12 mt-3">
+                            <div class="row d-flex justify-content-end">
+                                <div class="col col-md-4">
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        Enviar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

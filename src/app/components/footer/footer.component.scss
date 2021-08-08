@@ -1,0 +1,18 @@
+@import '../../../style/variables.scss';
+
+$paddingBody: 40px;
+
+body {
+
+}
+
+.main-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    
+    padding: $spacer-4; 
+    color: $white;
+    background-color: $primary;
+}

@@ -1,0 +1,6 @@
+@each $name, $glyph in $grays {
+    .text-gray-#{$name} {
+      color: $glyph;
+    }
+  }
+  

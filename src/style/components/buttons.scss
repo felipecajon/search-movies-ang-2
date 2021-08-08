@@ -1,0 +1,16 @@
+$primary-background: $primary;
+$primary-border: $primary;
+$primary-color: $white;
+$primary-hover-background: darken($primary, 10%);
+$primary-hover-border: darken($primary, 10%);
+$primary-hover-color: $white;
+$primary-active-background: darken($primary, 10%);
+$primary-active-border: darken($primary, 10%);
+$primary-active-color: $white;
+$primary-disabled-background: lighten($primary, 10%);
+$primary-disabled-border: lighten($primary, 10%);
+$primary-disabled-color: $white;
+
+.btn-primary {
+    @include button-variant($primary-background, $primary-border, $primary-color, $primary-hover-background, $primary-hover-border, $primary-hover-color, $primary-active-background, $primary-active-border, $primary-active-color, $primary-disabled-background, $primary-disabled-border, $primary-disabled-color);
+}
