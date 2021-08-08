@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '@pages/login/auth.service';
-import { QuestionBase } from './components/form/question-base';
-import { QuestionService } from './components/form/question.service';
+import { QuestionBase } from './components/form-test/question-base';
+import { QuestionService } from './components/form-test/question.service';
 import { Observable } from 'rxjs';
 
 @Component({

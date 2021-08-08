@@ -1,6 +1,14 @@
 <app-header></app-header>
 
-<app-dynamic-form [questions]="questions$ | async"></app-dynamic-form>
+<!-- <app-dynamic-form [questions]="questions$ | async"></app-dynamic-form> -->
+
+<!-- <form [FormGroup]="formTest">
+    <app-input-test [type]="'text'" [label]="'Usuario'" [key]="'Usuario'" [form]="formTest" ></app-input-test>
+    <div class="form-group">
+        <label for="usuario">Usuario</label>
+        <input formControlName="usuario" type="text" class="form-control" required autocomplete="off">
+    </div>
+</form> -->
 
 <main>
     <router-outlet></router-outlet>

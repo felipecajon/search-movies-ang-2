@@ -12,8 +12,9 @@ import { SearchMoviesComponent } from './pages/search-movies/search-movies.compo
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { DynamicFormQuestionComponent } from './components/form/input/dynamic-form-question.component';
-import { DynamicFormComponent } from './components/form/form/dynamic-form.component';
+import { DynamicFormQuestionComponent } from './components/form-test/input/dynamic-form-question.component';
+import { DynamicFormComponent } from './components/form-test/form/dynamic-form.component';
+import { InputComponent } from './components/form/input/input.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DynamicFormComponent } from './components/form/form/dynamic-form.compon
     LoginComponent,
     SearchMoviesComponent,
     DynamicFormComponent,
-    DynamicFormQuestionComponent
+    DynamicFormQuestionComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,

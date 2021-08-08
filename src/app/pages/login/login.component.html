@@ -7,12 +7,15 @@
                 </p>
 
                 <form [formGroup]="formLogin" class="needs-validation was-validated" (submit)="submit()" novalidate>
+                    
+                    
                     <div class="row">
                         <div class="col-12">
-                            <div class="form-group">
+                            <app-input [type]="'text'" [label]="'name'" [key]="'name'" [form]="formLogin" ></app-input>
+                            <!-- <div class="form-group">
                                 <label for="name">Usuario</label>
                                 <input formControlName="name" type="text" class="form-control" required autocomplete="off">
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="col-12 mt-3">
