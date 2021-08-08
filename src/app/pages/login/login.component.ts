@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   submit () {
     const {value} = this.formLogin;
-debugger
+
     this.auth.login(value);
   }
 

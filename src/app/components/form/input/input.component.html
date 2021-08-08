@@ -1,5 +1,13 @@
-<div class="form-group" [formGroup]="form">
-    <label [attr.for]="key">{{label}}</label>
+<div class="form-group {{containerClass}}" [formGroup]="form">
+    <label [attr.for]="id" class="{{labelClass}}" translate="{{label}}"></label>
     
-    <input class="form-control" [formControlName]="key" [id]="key" [type]="type">
+    <input 
+    class="form-control {{inputClass}}" 
+    [formControlName]="name" 
+    [attr.id]="id" 
+    [attr.type]="type" 
+    [attr.placeholder]="placeholder" 
+    [attr.required]="required" 
+    [attr.autocomplete]="autocomplete"
+    />
 </div>
