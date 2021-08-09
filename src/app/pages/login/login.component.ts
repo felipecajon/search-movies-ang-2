@@ -11,26 +11,30 @@ import { AuthService } from './auth.service';
 
 export class LoginComponent implements OnInit {
   formLogin: FormGroup;
-  
-  constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) {
+  requiredError: boolean = false;
+  hasError: boolean = false;
+  messages_invalidLogin: string = '';
 
+  constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) {
     if ( this.auth.isLogged() ) {
       this.router.navigate(['search-movie']);
     }
 
     this.formLogin = this.formBuilder.group({
-      name: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      name: ['', Validators.required],
+      password: ['', Validators.required]
     })
   }
 
-  submit () {
+  async submit () {
     const {value} = this.formLogin;
-
-    this.auth.login(value);
+    const res = await this.auth.login(value).then();
+    this.hasError = !res.isAuthenticated;
+    this.messages_invalidLogin = res.message
   }
 
   ngOnInit(): void {
+    
   }
 
 }

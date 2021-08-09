@@ -2,25 +2,29 @@
     <div class="row align-items-center justify-content-center vh-75">
         <div class="col-12 col-md-6 col-lg-5">
             <div class="border rounded p-3 mb-6">
-                <p>
-                    Entre com suas credênciais
+                <p translate>
+                    login.form.title
                 </p>
 
-                <form [formGroup]="formLogin" class="needs-validation was-validated" (submit)="submit()" novalidate>
+                <form [formGroup]="formLogin" class="" (submit)="submit()" novalidate >
                     <div class="row">
                         <div class="col-12">
-                            <app-input id="name" placeholder="footer.legal.massage" label="footer.legal.massage" name="name" [form]="formLogin"></app-input>
+                            <app-input id="name" placeholder="login.form.user.placeholder" label="login.form.user.label" name="name" required="true" [form]="formLogin" ></app-input>
                         </div>
 
                         <div class="col-12 mt-3">
-                            <app-input id="password" label="footer.legal.massage" name="password" type="password" [form]="formLogin"></app-input>
+                            <app-input id="password" label="login.form.password.label" name="password" type="password" [form]="formLogin"></app-input>
+                        </div>
+
+                        <div class="col-12 mt-3 text-danger" *ngIf="hasError">
+                            {{messages_invalidLogin}}
                         </div>
     
                         <div class="col-12 mt-3">
                             <div class="row d-flex justify-content-end">
                                 <div class="col col-md-4">
                                     <button type="submit" class="btn btn-primary w-100" translate>
-                                        footer.legal.massage
+                                        login.form.action.submit
                                     </button>
                                 </div>
                             </div>

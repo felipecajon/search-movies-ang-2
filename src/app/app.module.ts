@@ -15,6 +15,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DynamicFormQuestionComponent } from './components/form-test/input/dynamic-form-question.component';
 import { DynamicFormComponent } from './components/form-test/form/dynamic-form.component';
 import { InputComponent } from './components/form/input/input.component';
+import { LogoutComponent } from './pages/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { InputComponent } from './components/form/input/input.component';
     SearchMoviesComponent,
     DynamicFormComponent,
     DynamicFormQuestionComponent,
-    InputComponent
+    InputComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ValidationErrors } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -14,19 +14,35 @@ export class InputComponent implements OnInit {
   @Input() name!: string;
   @Input() label?: string
   @Input() type?: string = 'text';
-  @Input() required!: boolean;
+  @Input() required!: string;
   @Input() autocomplete?: string;
   @Input() placeholder!: string;
   @Input() containerClass?: string;
   @Input() labelClass?: string;
   @Input() inputClass?: string;
+
+  errorMessage: string = '';
   
   constructor(private translate: TranslateService) { }
 
   ngOnInit(): void {
-    this.translate.get(this.placeholder).subscribe(res => {
-      this.placeholder = res
-    })
+    this.placeholder && this.translate.get(this.placeholder).subscribe(res => this.placeholder = res);
+    this.label && this.translate.get(this.label).subscribe(res => this.label = res);
+    this.errorMessage && this.translate.get('form.error.required').subscribe(res => this.errorMessage = res);
   }
 
+  isTouched (field : any) {
+    return this.form.get(field)?.touched && !this.form.get(field)?.valid
+  }
+
+  errorRequired(field: any) {
+    return this.isTouched(field) && this.form.get(field) && this.form.get(field)?.errors && this.form.get(field)?.errors?.required;
+  }
+
+  hasError(field : any) {
+    return {
+      'is-invalid': this.isTouched(field),
+      'has-feedback': this.isTouched(field) 
+    }
+  }
 }

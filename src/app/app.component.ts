@@ -17,10 +17,8 @@ export class AppComponent {
   questions$: Observable<QuestionBase<any>[]>;
 
   constructor (private auth: AuthService, private router: Router, private translate: TranslateService, service: QuestionService) {
-    this.auth.verifyIfLogged();
     this.translate.setDefaultLang('pt');
     this.questions$ = service.getQuestions();
-
   }
 
   ngOnInit () {

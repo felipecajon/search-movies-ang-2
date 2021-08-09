@@ -1,5 +1,43 @@
 {
+    "form": {
+        "error": {
+            "required": "O Campo é Obrigatório"
+        }
+    },
+
+    "login": {
+        "error": {
+            "invalidLogin": "Usuário ou Senha Inválida"
+        },
+        "form": {
+            "title": "Entre com suas credênciais",
+            "user": {
+                "label": "Usuário",
+                "placeholder": "Usuário"
+            },
+            "password": {
+                "label": "Senha"
+            },
+            "action": {
+                "submit": "Enviar"
+            }
+        }
+    },
+
     "footer": {
         "legal.massage": "© 2021 Regal Movies. Todos os direitos reservados"
+    },
+    
+    "searchMovie": {
+        "form": {
+            "title": "Entre com suas credênciais",
+            "name": {
+                "label": "Nome do Filme",
+                "placeholder": "..."
+            },
+            "action": {
+                "submit": "Pesquisar"
+            }
+        }
     }
 }
