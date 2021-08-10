@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col text-center mt-5">
-            <h1 class="">Busque seu Filme aqui</h1>
+            <h1 translate>searchMovie.title</h1>
             
-            <p class="mt-5">Esta buscando informações sobre seu filme predileto? Você veio ao lugar certo, descubra o Ano de lançamento, Diretor, Atores e muito mais!</p>
+            <p class="mt-5"translate> searchMovie.sub-title </p>
         </div>
     </div>
     
@@ -36,20 +36,34 @@
             </p>
             
             <p class="m-0">
-                <span class="fw-bold">Diretor:</span> {{movie.director}}
+                <span class="fw-bold" translate>searchMovie.result.director</span> {{movie.director}}
             </p>
             
             <p class="m-0">
-                <span class="fw-bold">Ator:</span> {{movie.actor}}
+                <span class="fw-bold" translate>searchMovie.result.actor</span> {{movie.actor}}
             </p>
             
             <p class="m-0">
-                <span class="fw-bold">Ano:</span> {{movie.year}}
+                <span class="fw-bold" translate>searchMovie.result.year</span> {{movie.year}}
             </p>
             
             <p class="m-0">
-                <span class="fw-bold">Genero:</span> {{movie.genre}}
+                <span class="fw-bold" translate>searchMovie.result.genre</span> {{movie.genre}}
             </p>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <button class="btn btn-primary" (click)="toggleFavorite(movie_ID, movie_TITLE, isFavorite)" >
+                        <span *ngIf="!isFavorite">Favoritar</span>
+                        <span *ngIf="isFavorite">Desfavoritar</span>
+                        
+                        <span class="ms-2 d-inline-block">
+                            <app-heartbroken *ngIf="isFavorite" size="18" classColor="svg-light"></app-heartbroken>
+                            <app-heart *ngIf="!isFavorite"size="18" classColor="svg-light"></app-heart>
+                        </span>
+                    </button>
+                </div>
+            </div>
         </div>
         
         <div class="col col-md-4">

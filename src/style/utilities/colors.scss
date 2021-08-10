@@ -1,6 +1,11 @@
-@each $name, $glyph in $grays {
-    .text-gray-#{$name} {
-      color: $glyph;
-    }
+@each $name, $value in $grays {
+  .text-gray-#{$name} {
+    color: $value;
   }
-  
+}
+
+@each $name, $value in $theme-colors {
+  .svg-#{$name} {
+    fill: $value;
+  }
+}

@@ -16,6 +16,11 @@ import { DynamicFormQuestionComponent } from './components/form-test/input/dynam
 import { DynamicFormComponent } from './components/form-test/form/dynamic-form.component';
 import { InputComponent } from './components/form/input/input.component';
 import { LogoutComponent } from './pages/logout/logout.component';
+import { HeartComponent } from './components/icons/heart/heart.component';
+import { HeartbrokenComponent } from './components/icons/heartbroken/heartbroken.component';
+import { StoreModule } from "@ngrx/store";
+import { reducerMovies } from "./stateManager/movies.reducer";
+import { MovieListComponent } from './pages/movie-list/movie-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,10 @@ import { LogoutComponent } from './pages/logout/logout.component';
     DynamicFormComponent,
     DynamicFormQuestionComponent,
     InputComponent,
-    LogoutComponent
+    LogoutComponent,
+    HeartComponent,
+    HeartbrokenComponent,
+    MovieListComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +43,9 @@ import { LogoutComponent } from './pages/logout/logout.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    StoreModule.forRoot({
+      movies: reducerMovies
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

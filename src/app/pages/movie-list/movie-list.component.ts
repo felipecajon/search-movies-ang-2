@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@pages/login/auth.service';
-import { User } from '@pages/login/user.model';
+import { AppState } from '@app/app.state';
+import { Movie } from '@app/model/movie';
+import { Store } from '@ngrx/store';
+import * as actionsMovie from "../../stateManager/movies.actions";
+import { SearchMoviesService } from '../search-movies/search-movies.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -9,11 +12,16 @@ import { User } from '@pages/login/user.model';
 })
 
 export class MovieListComponent implements OnInit {
-  user : User = {};
+  movies?: Movie[];
+  
+  constructor( private store: Store<AppState>, private searchMoviceService: SearchMoviesService) {
+  }
 
-  constructor( private auth : AuthService) {}
+  removeMovie (id: string) {
+    this.searchMoviceService.disfavorIt(id);
+  }
   
   ngOnInit(): void {
-    this.user = this.auth.getUser();
+    this.store.select('movies').subscribe(movies => this.movies = movies);
   } 
 }

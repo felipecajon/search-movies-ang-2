@@ -6,11 +6,11 @@ import { MovieListComponent } from './pages/movie-list/movie-list.component';
 import { SearchMoviesComponent } from './pages/search-movies/search-movies.component';
 
 const routes: Routes = [
-  { path: '',  redirectTo: 'login', pathMatch: 'full' },
+  { path: '', pathMatch: 'full', component: LoginComponent },
   { path: 'login', component: LoginComponent},
   { path: 'logout', component: LogoutComponent},
-  { path: 'movie-list', component: MovieListComponent},
   { path: 'search-movie', component: SearchMoviesComponent},
+  { path: 'movie-list', component: MovieListComponent},
 ];
 
 @NgModule({

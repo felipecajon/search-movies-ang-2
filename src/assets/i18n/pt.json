@@ -29,6 +29,8 @@
     },
     
     "searchMovie": {
+        "title": "Busque seu filme aqui",
+        "sub-title": "Esta buscando informações sobre seu filme predileto? Você veio ao lugar certo, descubra o Ano de lançamento, Diretor, Atores e muito mais!",
         "form": {
             "title": "Entre com suas credênciais",
             "name": {
@@ -38,6 +40,12 @@
             "action": {
                 "submit": "Pesquisar"
             }
+        },
+        "result": {
+            "director": "Diretor:",
+            "actor": "Atores:",
+            "year": "Ano:",
+            "genre": "Gênero:"
         }
     }
 }

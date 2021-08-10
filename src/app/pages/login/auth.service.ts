@@ -15,9 +15,7 @@ export class AuthService {
     message_errorLogin: string = '';
     isLoggedUser = new EventEmitter<boolean>();
     
-    constructor(private router: Router, private translate: TranslateService) {
-        this.translate.get('login.error.invalidLogin').subscribe((res: string) => this.message_errorLogin = res );
-    }
+    constructor(private router: Router, private translate: TranslateService) {}
     
     verifyIfLogged () {
         const isLogged = this.isLogged();
@@ -61,11 +59,13 @@ export class AuthService {
         
         if ( this.isAuthenticated ) {
             this.setUser(user);
+            debugger
             this.router.navigate(['search-movie']);
             this.setToken( this.isAuthenticated.toString() )
         }
         
         this.isLoggedUser.emit( this.isAuthenticated );
+        this.translate.get('login.error.invalidLogin').subscribe((res: string) => this.message_errorLogin = res );
         
         return {isAuthenticated: this.isAuthenticated, message: !this.isAuthenticated ? this.message_errorLogin : ''};
     }

@@ -16,9 +16,8 @@ export class LoginComponent implements OnInit {
   messages_invalidLogin: string = '';
 
   constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) {
-    if ( this.auth.isLogged() ) {
-      this.router.navigate(['search-movie']);
-    }
+    debugger
+    this.auth.verifyIfLogged();
 
     this.formLogin = this.formBuilder.group({
       name: ['', Validators.required],

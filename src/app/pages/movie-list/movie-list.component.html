@@ -1,1 +1,6 @@
-<p>movie-list works!</p>
+
+<ul *ngIf="movies">
+    <li *ngFor="let movie of movies">
+        {{ movie.title }}
+    </li>
+</ul>
