@@ -19,8 +19,13 @@ import { LogoutComponent } from './pages/logout/logout.component';
 import { HeartComponent } from './components/icons/heart/heart.component';
 import { HeartbrokenComponent } from './components/icons/heartbroken/heartbroken.component';
 import { StoreModule } from "@ngrx/store";
-import { reducerMovies } from "./stateManager/movies.reducer";
+import { reducerMovies } from "./store/movies/movies.reducer";
 import { MovieListComponent } from './pages/movie-list/movie-list.component';
+import { EffectsModule } from '@ngrx/effects';
+import { MoviesEffects } from './store/movies/movies.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { MovieDetailsComponent } from './pages/search-movies/movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,8 @@ import { MovieListComponent } from './pages/movie-list/movie-list.component';
     LogoutComponent,
     HeartComponent,
     HeartbrokenComponent,
-    MovieListComponent
+    MovieListComponent,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,7 @@ import { MovieListComponent } from './pages/movie-list/movie-list.component';
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot({
-      movies: reducerMovies
+      favorites: reducerMovies
     }),
     TranslateModule.forRoot({
       loader: {
@@ -52,7 +58,10 @@ import { MovieListComponent } from './pages/movie-list/movie-list.component';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([MoviesEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

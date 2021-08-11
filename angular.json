@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "searchMovieUltimate"
+  "defaultProject": "searchMovieUltimate",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

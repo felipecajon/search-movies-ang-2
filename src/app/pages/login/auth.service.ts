@@ -59,7 +59,6 @@ export class AuthService {
         
         if ( this.isAuthenticated ) {
             this.setUser(user);
-            debugger
             this.router.navigate(['search-movie']);
             this.setToken( this.isAuthenticated.toString() )
         }

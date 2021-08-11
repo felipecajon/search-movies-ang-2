@@ -1,0 +1,49 @@
+<div class="row mt-5" *ngIf="!movieIsEmpty">
+    <div class="col">
+        <p class="fw-bold fs-2">
+            {{movie.title}}
+        </p>
+        
+        <p>
+            {{movie.description}}
+        </p>
+        
+        <p class="m-0">
+            <span class="fw-bold" translate>searchMovie.result.director</span> {{movie.director}}
+        </p>
+        
+        <p class="m-0">
+            <span class="fw-bold" translate>searchMovie.result.actor</span> {{movie.actor}}
+        </p>
+        
+        <p class="m-0">
+            <span class="fw-bold" translate>searchMovie.result.year</span> {{movie.year}}
+        </p>
+        
+        <p class="m-0">
+            <span class="fw-bold" translate>searchMovie.result.genre</span> {{movie.genre}}
+        </p>
+
+        <div class="row mt-4">
+            <div class="col">
+                <button class="btn btn-primary" (click)="toggleFavorite()" >
+                    <span *ngIf="!isFavorite">Favoritar</span>
+                    <span *ngIf="isFavorite">Desfavoritar</span>
+                    
+                    <span class="ms-2 d-inline-block">
+                        <app-heartbroken *ngIf="isFavorite" size="18" classColor="svg-light"></app-heartbroken>
+                        <app-heart *ngIf="!isFavorite"size="18" classColor="svg-light"></app-heart>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col col-md-4">
+        <img class="reponsive-image border" [src]="movie.image" alt="" width="300" height="450">
+    </div>
+</div>
+
+<div *ngIf="movieIsEmpty && isFetched">
+    Filme não encontrado
+</div>

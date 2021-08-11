@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   messages_invalidLogin: string = '';
 
   constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) {
-    debugger
     this.auth.verifyIfLogged();
 
     this.formLogin = this.formBuilder.group({
