@@ -5,7 +5,6 @@ import { Movie } from '@app/model/movie';
 import { Store } from '@ngrx/store';
 import { AuthService } from '../login/auth.service';
 import { SearchMoviesService } from './search-movies.service';
-import * as actionsMovie from "../../store/movies/movies.actions";
 
 @Component({
     selector: 'app-search-movies',

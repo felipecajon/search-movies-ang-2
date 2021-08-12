@@ -26,6 +26,7 @@
       "@components/*": ["src/app/components/*"],
       "@constants": ["src/app/constants.ts"],
       "@pages/*": ["src/app/pages/*"],
+      "@store/*": ["src/app/store/*"],
     },
     "resolveJsonModule": true
   },
