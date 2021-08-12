@@ -20,7 +20,6 @@ import { HeartComponent } from './components/icons/heart/heart.component';
 import { HeartbrokenComponent } from './components/icons/heartbroken/heartbroken.component';
 import { StoreModule } from "@ngrx/store";
 import { reducerMovies } from "./store/movies/movies.reducer";
-import { MovieListComponent } from './pages/movie-list/movie-list.component';
 import { EffectsModule } from '@ngrx/effects';
 import { MoviesEffects } from './store/movies/movies.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -40,7 +39,6 @@ import { MovieDetailsComponent } from './pages/search-movies/movie-details/movie
     LogoutComponent,
     HeartComponent,
     HeartbrokenComponent,
-    MovieListComponent,
     MovieDetailsComponent
   ],
   imports: [

@@ -93,11 +93,7 @@ export class MovieDetailsComponent implements OnInit {
     }
     
     toggleFavorite () {
-        if ( this.isFavorite ) {
-            this.disfavorIt();
-        } else {
-            this.favoriteIt();
-        }
+        this.isFavorite ? this.disfavorIt() : this.favoriteIt();
     }
     
     checkFavorite (movieID: string) {

@@ -46,6 +46,7 @@
             "actor": "Atores:",
             "year": "Ano:",
             "genre": "Gênero:"
-        }
+        },
+        "emptyMovie": "Filme não encontrado"
     }
 }
