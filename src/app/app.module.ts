@@ -57,8 +57,7 @@ import { MovieDetailsComponent } from './pages/search-movies/movie-details/movie
         deps: [HttpClient]
       }
     }),
-    EffectsModule.forRoot([]),
-    EffectsModule.forFeature([MoviesEffects]),
+    EffectsModule.forRoot([MoviesEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [AuthService],

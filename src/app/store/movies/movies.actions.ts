@@ -73,14 +73,12 @@ export class LoadFavoritesFailure implements Action {
 }
 
 export type Actions = 
-FavoriteIt
-FavoriteIt_Success
-FavoriteIt_Failure
-
-DisfavoriteIt
-DisfavoriteIt_Success
-DisfavoriteIt_Failure
-
-LoadFavorites
-LoadFavoritesSuccess
-LoadFavoritesFailure
+| FavoriteIt
+| FavoriteIt_Success
+| FavoriteIt_Failure
+| DisfavoriteIt
+| DisfavoriteIt_Success
+| DisfavoriteIt_Failure
+| LoadFavorites
+| LoadFavoritesSuccess
+| LoadFavoritesFailure

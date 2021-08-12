@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Movie } from '@app/model/movie';
 import { SearchMoviesService } from '@app/pages/search-movies/search-movies.service';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
+import { of } from 'rxjs';
 import { map, mergeMap, catchError } from "rxjs/operators";
 import * as MovieActions from "./movies.actions";
 
@@ -8,16 +10,31 @@ import * as MovieActions from "./movies.actions";
 
 export class MoviesEffects {
   
-  // loadFavorites$ = createEffect(() => this.actions$.pipe(
-  //   ofTypee(MovieActions.),
-  //   mergeMap(() => this.searchMovieService.getFavorites()
-  //     .pipe(
-  //       map(movies => ({ type: '[Movies API] Movies Loaded Success', payload: movies })),
-  //       catchError(() => EMPTY)
-  //     ))
-  //   )
-  // );
+  loadFavorites$ = this.actions$
+    .pipe(
+      ofType( MovieActions.LOAD_FAVORITES ),
+      mergeMap(
+        () => this.searchMovieService.getFavorites()
+        .pipe(
+          map( favorites => new MovieActions.LoadFavoritesSuccess(favorites)),
+          catchError(error => of( new MovieActions.LoadFavoritesFailure(error) ))
+        ),
+      ),
+    );
   
+
+  // @Effect() loadFavorites$ = this.actions$
+  //   .pipe(
+  //     ofType<MovieActions.LoadFavorites>( MovieActions.LOAD_FAVORITES ),
+  //     mergeMap(
+  //       () => this.searchMovieService.getFavorites()
+  //       .pipe(
+  //         map( favorites => new MovieActions.LoadFavoritesSuccess(favorites)),
+  //         catchError(error => of ( new MovieActions.LoadFavoritesFailure( error ))),
+  //       ),
+  //     ),
+  //   );
+
   constructor(private actions$: Actions, private searchMovieService: SearchMoviesService) {}
   
 }
