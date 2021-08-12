@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { apiKey_omdbapi } from '@constants';
+import { apiKey_omdbapi, baseApi, baseApi_omdbapi } from '@constants';
 import { AppState } from '@app/app.state';
 import { Movie } from '@app/model/movie';
 import { Store } from '@ngrx/store';
-import * as actionsMovie from "../../store/movies/movies.actions";
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +18,15 @@ export class SearchMoviesService {
   constructor(private http: HttpClient, private store: Store<AppState>) { }
   
   favoriteIt (data: Movie) {
-    return this.http.post('http://localhost:3000/favorites/', {idMovie: data.idMovie, title: data.title});
+    return this.http.post(`${baseApi}/favorites`, {idMovie: data.idMovie, title: data.title});
   }
   
   disfavorIt (data: Movie) {
-    return this.http.delete(`http://localhost:3000/favorites/${data.id}`);
+    return this.http.delete(`${baseApi}/favorites/${data.id}`);
   }
 
   getFavorites () : Observable<Movie[]> {
-    return this.http.get<Movie[]>('http://localhost:3000/favorites');
+    return this.http.get<Movie[]>(`${baseApi}/favorites`);
   }
   
   getMovies (form: any) {
@@ -39,8 +38,8 @@ export class SearchMoviesService {
       }
     }
     
-    const url = 'https://www.omdbapi.com/';
-    const mockUrl = '/assets/mock/movie.json';
+    const useMock = false;
+    const url = useMock ? '/assets/mock/movie.json' : baseApi_omdbapi;
     
     this.http.get(url, configSearch).subscribe((res: any) => {
       
@@ -54,12 +53,15 @@ export class SearchMoviesService {
           actor: res.Actors,
           year: res.Year,
           genre: res.Genre
-        }
+        };
       } else {
-        this.currentMovie = {}
+        this.currentMovie = {};
       }
 
       this.movie?.emit( this.currentMovie );
+    },
+    error => {
+      console.log(error)
     });
   }
 };

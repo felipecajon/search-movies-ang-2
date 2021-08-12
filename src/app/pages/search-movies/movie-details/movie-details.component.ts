@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AppState } from '@app/app.state';
 import { Movie } from '@app/model/movie';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import * as actionFavorites from "../../../store/movies/movies.actions";
 import { SearchMoviesService } from '../search-movies.service';
 
@@ -13,13 +14,13 @@ import { SearchMoviesService } from '../search-movies.service';
 
 export class MovieDetailsComponent implements OnInit {
     
+    readonly favorites$: Observable<Movie[]> = this.store.select('favorites');
     @Input() movie!: Movie;
     isFavorite: boolean = false;
     isFetched: boolean = false;
     movieIsEmpty: boolean = true;
     
-    constructor(private searchMovieService: SearchMoviesService, private store: Store<AppState>) {
-    }
+    constructor(private searchMovieService: SearchMoviesService, private store: Store<AppState>) {}
     
     ngOnInit(): void {
         this.getFavorites();
@@ -47,7 +48,7 @@ export class MovieDetailsComponent implements OnInit {
     disfavorIt () {
         let local_movie: any;
 
-        this.store.select('favorites').subscribe((movies: Movie[]) => {
+        this.favorites$.subscribe((movies: Movie[]) => {
             local_movie = movies.find((movie: Movie) => movie.idMovie === this.movie.idMovie);
         })
         
@@ -57,11 +58,12 @@ export class MovieDetailsComponent implements OnInit {
     }
     
     toggleFavorite () {
+        console.log( this.favorites$ )
         this.isFavorite ? this.disfavorIt() : this.favoriteIt();
     }
     
     checkFavorite (movieID: string) {
-        this.store.select('favorites').subscribe((movies : Movie[]) => {
+        this.favorites$.subscribe((movies : Movie[]) => {
             this.isFavorite = movies.filter((favorite: Movie) => favorite.idMovie === movieID).length > 0;
         })
     }
