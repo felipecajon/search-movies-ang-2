@@ -1,10 +1,15 @@
 {
+    "generic": {
+        "favorite": "Favoritar",
+        "disfavor": "Desfavoritar"
+    },
+    
     "form": {
         "error": {
             "required": "O Campo é Obrigatório"
         }
     },
-
+    
     "login": {
         "error": {
             "invalidLogin": "Usuário ou Senha Inválida"
@@ -23,7 +28,7 @@
             }
         }
     },
-
+    
     "footer": {
         "legal.massage": "© 2021 Regal Movies. Todos os direitos reservados"
     },

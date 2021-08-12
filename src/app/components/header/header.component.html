@@ -6,11 +6,34 @@
                     <img class="responsive-image d-block" src="{{ urlLogo }}" alt="logo" width="309" height="98">
                 </a>
             </div>
+            
             <div class="col"></div>
-            <div class="col-3" *ngIf="isLogged">
-                <a class="btn-logout" routerLink="/logout">
-                    Logout
-                </a>
+
+            <div class="col-3 bg-primary" *ngIf="isLogged">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="my-account-menu">
+                        <div class="p-2">
+                            <app-hamburguer-menu size="20" classColor="svg-light"></app-hamburguer-menu>
+                        </div>
+                        
+                        <ul>
+                            <li class="d-none">Meu Perfil</li>
+                            <li>
+                                <a routerLink="/search">
+                                    Buscar Filmes
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/favorites">
+                                    Ver Favoritos
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/logout" class="text-decoration-none"> Sair </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

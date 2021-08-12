@@ -12,6 +12,6 @@
     />
     
     <div class="invalid-feedback" *ngIf="hasError(name)">
-        {{ errorRequired(name) ? 'O Campo é obrigatório' : '' }}
+        {{ getError(name) }}
     </div>
 </div>

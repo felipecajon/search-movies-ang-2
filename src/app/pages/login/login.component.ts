@@ -16,12 +16,18 @@ export class LoginComponent implements OnInit {
   messages_invalidLogin: string = '';
 
   constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) {
-    this.auth.verifyIfLogged();
+    this.verifyLogin();
 
     this.formLogin = this.formBuilder.group({
       name: ['', Validators.required],
       password: ['', Validators.required]
     })
+  }
+
+  verifyLogin () {
+    if ( this.auth.isLogged() ) {
+      this.router.navigate(['search']);
+    }
   }
 
   async submit () {
@@ -32,7 +38,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
   }
 
 }

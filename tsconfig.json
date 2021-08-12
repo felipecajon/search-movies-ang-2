@@ -25,6 +25,7 @@
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/app/components/*"],
       "@constants": ["src/app/constants.ts"],
+      "@models/*": ["src/app/models/*"],
       "@pages/*": ["src/app/pages/*"],
       "@store/*": ["src/app/store/*"],
     },

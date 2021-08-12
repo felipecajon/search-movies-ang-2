@@ -6,7 +6,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AppRoutingModule } from '@app/app-routing.module';
 
 import { HttpLoaderFactory } from '@app/app.module';
-import { IconsModule } from './icons/icons/icons.module';
+import { IconsModule } from './icons/icons.module';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';

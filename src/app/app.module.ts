@@ -21,6 +21,8 @@ import { MovieDetailsComponent } from '@pages/search-movies/movie-details/movie-
 import { AppComponent } from './app.component';
 
 import { AuthService } from '@pages/login/auth.service';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -28,10 +30,12 @@ import { AuthService } from '@pages/login/auth.service';
         LoginComponent,
         SearchMoviesComponent,
         LogoutComponent,
-        MovieDetailsComponent
+        MovieDetailsComponent,
+        FavoritesComponent
     ],
     imports: [
         BrowserModule,
+        FormsModule,
         AppRoutingModule,
         HttpClientModule,
         ComponentsModule,

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, ValidationErrors } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -15,6 +15,7 @@ export class InputComponent implements OnInit {
   @Input() label?: string
   @Input() type?: string = 'text';
   @Input() required!: string;
+  @Input() customErrorMessage!: string;
   @Input() autocomplete?: string;
   @Input() placeholder!: string;
   @Input() containerClass?: string;
@@ -22,6 +23,7 @@ export class InputComponent implements OnInit {
   @Input() inputClass?: string;
 
   errorMessage: string = '';
+  errorList: string[] = [];
   
   constructor(private translate: TranslateService) { }
 
@@ -31,12 +33,44 @@ export class InputComponent implements OnInit {
     this.errorMessage && this.translate.get('form.error.required').subscribe(res => this.errorMessage = res);
   }
 
+  getErrors (field: any) : string []{
+    const local_errors = [];
+    
+    this.isRequired(field) && local_errors.push('O Campo é obrigatorio');
+    this.hasCustomError(field) && local_errors.push( this.getCustomError(field) );
+    this.hasMinLength(field) && local_errors.push( 'Quantidade Mínima de Caracteres ' + this.form.get(field)?.errors?.minlength.requiredLength );
+    this.hasMaxLength(field) && local_errors.push( 'Quantidade Máxima de Caracteres ' + this.form.get(field)?.errors?.maxlength.requiredLength );
+    this.isEmail(field) && local_errors.push( 'Insira um e-mail válido' );
+
+    return local_errors;
+  }
+
   isTouched (field : any) {
     return this.form.get(field)?.touched && !this.form.get(field)?.valid
   }
 
-  errorRequired(field: any) {
-    return this.isTouched(field) && this.form.get(field) && this.form.get(field)?.errors && this.form.get(field)?.errors?.required;
+  isRequired (field: any): boolean {
+    return this.isTouched(field) && this.form.get(field)!.errors?.required;
+  }
+
+  hasMinLength (field: any): boolean {
+    return this.isTouched(field) && this.form.get(field)!.errors?.minlength;
+  }
+
+  hasMaxLength (field: any): boolean {
+    return this.isTouched(field) && this.form.get(field)!.errors?.maxlength;
+  }
+
+  isEmail (field: any): boolean {
+    return this.isTouched(field) && this.form.get(field)!.errors?.email;
+  }
+
+  hasCustomError (field: any): boolean {
+    return this.form.get(field)?.errors !== null && this.form.get(field)?.errors?.customError !== undefined
+  }
+
+  getCustomError (field: any) : string {
+    return this.form.get(field)?.errors && this.form.get(field)?.errors?.customError
   }
 
   hasError(field : any) {
@@ -44,5 +78,9 @@ export class InputComponent implements OnInit {
       'is-invalid': this.isTouched(field),
       'has-feedback': this.isTouched(field) 
     }
+  }
+
+  getError (field: any) : string{
+    return this.getErrors(field)[0];
   }
 }

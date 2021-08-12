@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AppState } from '@app/app.state';
 import { Movie } from '@app/model/movie';
 import { Store } from '@ngrx/store';
@@ -23,8 +23,20 @@ export class SearchMoviesComponent implements OnInit {
         this.auth.verifyIfLogged();
         
         this.formSearch = this.formBuilder.group({
-            name: new FormControl('batman', Validators.required)
-        })
+            name: new FormControl('batman'),
+            identification: new FormControl('')
+        }, {validator: this.customValidation()})
+    }
+    
+    customValidation() {
+        return (group: FormGroup) => {
+            let controlName = group.controls['name'];
+            let controlIdentification = group.controls['identification'];
+
+            if (controlName.value === '' && controlIdentification.value === '') {
+                return controlName.setErrors({customError: 'O Campo é Obrigatorio'})
+            }
+        }
     }
     
     ngOnInit(): void {
