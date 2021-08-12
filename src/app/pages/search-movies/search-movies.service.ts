@@ -18,12 +18,12 @@ export class SearchMoviesService {
 
   constructor(private http: HttpClient, private store: Store<AppState>) { }
   
-  favoriteIt (idMovie: string, title: string) {
-    return this.http.post('http://localhost:3000/favorites/', {idMovie, title});
+  favoriteIt (data: Movie) {
+    return this.http.post('http://localhost:3000/favorites/', {idMovie: data.idMovie, title: data.title});
   }
   
-  disfavorIt (id: number) {
-    return this.http.delete(`http://localhost:3000/favorites/${id}`);
+  disfavorIt (data: Movie) {
+    return this.http.delete(`http://localhost:3000/favorites/${data.id}`);
   }
 
   getFavorites () : Observable<Movie[]> {

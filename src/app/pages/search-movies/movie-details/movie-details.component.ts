@@ -15,7 +15,6 @@ export class MovieDetailsComponent implements OnInit {
     
     @Input() movie!: Movie;
     isFavorite: boolean = false;
-    favorites: Movie[] = [];
     isFetched: boolean = false;
     movieIsEmpty: boolean = true;
     
@@ -38,57 +37,22 @@ export class MovieDetailsComponent implements OnInit {
     }
 
     getFavorites () {
-        this.store.dispatch( new actionFavorites.LoadFavorites() );
-        
-        const favoritesObserver = {
-            next: (favorites: Movie[]) => {
-                this.store.dispatch( new actionFavorites.LoadFavoritesSuccess(favorites) );
-                this.store.select('favorites').subscribe((favorites: Movie[]) => this.favorites = favorites);
-            },
-            error: (error: any) => {
-                console.error( error );
-                this.store.dispatch( new actionFavorites.LoadFavoritesFailure(error) );
-            }
-        }
-        
-        this.searchMovieService.getFavorites().subscribe(favoritesObserver);
+        this.store.dispatch(new actionFavorites.LoadFavorites());
     }
     
     favoriteIt () {
-        this.store.dispatch( new actionFavorites.FavoriteIt() );
-        
-        const favoritesObserver = {
-            next: (movie: Movie) => {
-                this.movie.id = movie.id;
-                this.store.dispatch( new actionFavorites.FavoriteIt_Success( {id: movie.id, title: movie.title, idMovie: movie.idMovie} ) );
-                this.movie.idMovie && this.checkFavorite(this.movie.idMovie);
-            },
-            error: (error: any) => {
-                console.error( error );
-                this.store.dispatch( new actionFavorites.FavoriteIt_Failure(error) );
-            }
-        }
-        
-        this.movie.idMovie && this.movie.title && this.searchMovieService.favoriteIt(this.movie.idMovie, this.movie.title).subscribe(favoritesObserver);
+        this.store.dispatch(new actionFavorites.FavoriteIt({idMovie: this.movie.idMovie, title: this.movie.title}));
     }
     
     disfavorIt () {
-        this.store.dispatch( new actionFavorites.DisfavoriteIt() );
-        const local_movie = this.favorites.find((movie: Movie) => movie.idMovie === this.movie.idMovie);
+        let local_movie: any;
+
+        this.store.select('favorites').subscribe((movies: Movie[]) => {
+            local_movie = movies.find((movie: Movie) => movie.idMovie === this.movie.idMovie);
+        })
         
         if ( local_movie && local_movie.id ) {
-            const favoritesObserver = {
-                next: (movie: Movie) => {
-                    this.store.dispatch( new actionFavorites.DisfavoriteIt_Success({id: local_movie.id}) );
-                    this.movie.idMovie && this.checkFavorite(this.movie.idMovie);
-                },
-                error: (error: any) => {
-                    console.error( error );
-                    this.store.dispatch( new actionFavorites.DisfavoriteIt_Failure(error) );
-                }
-            }
-            
-            this.searchMovieService.disfavorIt(local_movie.id).subscribe(favoritesObserver);
+            this.store.dispatch( new actionFavorites.DisfavoriteIt( {id: local_movie.id} ) );
         }
     }
     
@@ -97,6 +61,8 @@ export class MovieDetailsComponent implements OnInit {
     }
     
     checkFavorite (movieID: string) {
-        this.isFavorite = this.favorites.filter((favorite: Movie) => favorite.idMovie === movieID).length > 0;
+        this.store.select('favorites').subscribe((movies : Movie[]) => {
+            this.isFavorite = movies.filter((favorite: Movie) => favorite.idMovie === movieID).length > 0;
+        })
     }
 }

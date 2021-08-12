@@ -10,31 +10,47 @@ import * as MovieActions from "./movies.actions";
 
 export class MoviesEffects {
   
-  loadFavorites$ = this.actions$
-    .pipe(
-      ofType( MovieActions.LOAD_FAVORITES ),
-      mergeMap(
-        () => this.searchMovieService.getFavorites()
-        .pipe(
-          map( favorites => new MovieActions.LoadFavoritesSuccess(favorites)),
-          catchError(error => of( new MovieActions.LoadFavoritesFailure(error) ))
+  loadFavorites$ = createEffect(() => 
+    this.actions$
+      .pipe(
+        ofType<MovieActions.LoadFavorites>( MovieActions.LOAD_FAVORITES ),
+        mergeMap(
+          () => this.searchMovieService.getFavorites()
+          .pipe(
+            map( favorites => new MovieActions.LoadFavoritesSuccess(favorites)),
+            catchError(error => of ( new MovieActions.LoadFavoritesFailure( error ))),
+          ),
         ),
-      ),
-    );
-  
+      )
+  );
 
-  // @Effect() loadFavorites$ = this.actions$
-  //   .pipe(
-  //     ofType<MovieActions.LoadFavorites>( MovieActions.LOAD_FAVORITES ),
-  //     mergeMap(
-  //       () => this.searchMovieService.getFavorites()
-  //       .pipe(
-  //         map( favorites => new MovieActions.LoadFavoritesSuccess(favorites)),
-  //         catchError(error => of ( new MovieActions.LoadFavoritesFailure( error ))),
-  //       ),
-  //     ),
-  //   );
+  favoriteIt$ = createEffect(() => 
+    this.actions$
+      .pipe(
+        ofType<MovieActions.FavoriteIt>( MovieActions.FAVORITE_IT ),
+        mergeMap(
+          data => this.searchMovieService.favoriteIt(data.movie)
+          .pipe(
+            map( favorites => new MovieActions.FavoriteIt_Success(favorites)),
+            catchError(error => of ( new MovieActions.FavoriteIt_Failure( error ))),
+          ),
+        ),
+      )
+  );
+
+  disFavoriteIt$ = createEffect(() =>{
+    return this.actions$
+      .pipe(
+        ofType<MovieActions.DisfavoriteIt>( MovieActions.DISFAVOR_IT ),
+        mergeMap(
+          data => this.searchMovieService.disfavorIt(data.movie)
+          .pipe(
+            map( () => new MovieActions.DisfavoriteIt_Success(data.movie)),
+            catchError(error => of ( new MovieActions.DisfavoriteIt_Failure( error ))),
+          ),
+        ),
+      )
+  });
 
   constructor(private actions$: Actions, private searchMovieService: SearchMoviesService) {}
-  
 }

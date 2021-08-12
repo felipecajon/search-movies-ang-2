@@ -3,7 +3,12 @@
     {
       "idMovie": "tt0078346",
       "title": "Superman",
-      "id": 2
+      "id": 4
+    },
+    {
+      "idMovie": "tt0096895",
+      "title": "Batman",
+      "id": 5
     }
   ]
 }
