@@ -3,3 +3,16 @@
 .main-header {
     border: 1px solid $gray-500;
 }
+
+.btn-logout {
+    max-width: 100px;
+    background-color: $primary;
+    color: $white;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+}

@@ -38,7 +38,7 @@ export class SearchMoviesService {
       }
     }
     
-    const useMock = false;
+    const useMock = true;
     const url = useMock ? '/assets/mock/movie.json' : baseApi_omdbapi;
     
     this.http.get(url, configSearch).subscribe((res: any) => {

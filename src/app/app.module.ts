@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -34,8 +33,6 @@ import { AuthService } from '@pages/login/auth.service';
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
         HttpClientModule,
         ComponentsModule,
         StoreModule.forRoot({

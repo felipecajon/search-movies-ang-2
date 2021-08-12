@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AppState } from '@app/app.state';
 import { Movie } from '@app/model/movie';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { AuthService } from '../login/auth.service';
 import { SearchMoviesService } from './search-movies.service';
 
@@ -14,8 +15,10 @@ import { SearchMoviesService } from './search-movies.service';
 
 export class SearchMoviesComponent implements OnInit {
     formSearch: FormGroup;
+    movie$: Observable<Movie> = this.searchMoviesSevice.movie;
     movie?: Movie;
-    
+    isFetching: boolean = false;
+
     constructor( private formBuilder: FormBuilder, private searchMoviesSevice: SearchMoviesService, private auth: AuthService,  private store: Store<AppState>) {
         this.auth.verifyIfLogged();
         
@@ -25,13 +28,15 @@ export class SearchMoviesComponent implements OnInit {
     }
     
     ngOnInit(): void {
-        this.searchMoviesSevice.movie.subscribe(res => {
-            this.movie = res;
-        })
+        this.movie$.subscribe((movie: Movie) => {
+            this.movie = movie;
+            this.isFetching = false;
+        });
     }
     
     submit () {
         if ( this.formSearch.valid ) {
+            this.isFetching = true;
             this.searchMoviesSevice.getMovies( this.formSearch.getRawValue() );
         }
     }
