@@ -14,6 +14,7 @@ import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerI18n, I18n } from './datepicker/CustomDatepickerI18n';
 import { NgbDatePTParserFormatter } from './datepicker/NgbDatePTParserFormatter';
 
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NgbDatePTParserFormatter } from './datepicker/NgbDatePTParserFormatter'
     ReactiveFormsModule,
     NgbModule,
     IconsModule,
+    NgxMaskModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

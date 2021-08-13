@@ -30,6 +30,8 @@ export class RegisterComponent implements OnInit {
   }
   
   submit () {
+    console.log(this.formRegister.getRawValue());
+    
     console.log(this.inputService.isDate( this.formRegister.controls['date'] ));
     
 

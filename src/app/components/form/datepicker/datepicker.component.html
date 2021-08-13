@@ -1,23 +1,27 @@
-<div class="form-group {{containerClass}} {{label ? 'has-label' : ''}}" [formGroup]="form">
+<div class="form-group date-picker-custom {{containerClass}} {{label ? 'has-label' : ''}}" [formGroup]="form" [attr.data-uid]="name">
     <label [attr.for]="id" class="{{labelClass}}" *ngIf="label"> {{label}} {{required ? '*' : ''}}</label>
     
     <div class="input-group">
+
         <input
-        [attr.id]="id" 
-        [formControlName]="name" 
+        #start="ngbDatepicker"
+        [attr.id]="id"
+        type="text" 
         class="form-control {{inputClass}}"
         [ngClass]="classError(name, form)"
         [attr.placeholder]="placeholder"
-        [value]="selectedDate"
-        ngbDatepicker #d="ngbDatepicker"
-        (change)="onDateChange($event.target)"
-        (dateSelect)="onDateSelect($event)"
-        (click)="d.toggle()"
-        autocomplete="off"
-        />
+        (keyup)="keyup($event.target, form, name)"
+        (dateSelect)="onDateSelect($event, form, name)"
+         [leadZeroDateTime]="true"
+         mask="d0/M0/0000"
+         autocomplete="off"
+         ngbDatepicker
+         />
 
+         <input type="hidden" class="js-date" [formControlName]="name" />
+        
         <div class="input-group-append">
-            <button class="input-group-text fix-border-radius" (click)="d.toggle()" type="button">
+            <button class="input-group-text fix-border-radius" (click)="start.toggle()" type="button">
                 <app-calendar size="15"></app-calendar>
             </button>
         </div>
@@ -27,5 +31,3 @@
         </div>
     </div>
 </div>
-<hr/>
-<pre>Model on date picker: {{ selectedDate | json }}</pre>

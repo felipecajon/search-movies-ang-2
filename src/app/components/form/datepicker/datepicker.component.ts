@@ -1,5 +1,6 @@
 import { Component, OnInit, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR, } from '@angular/forms';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { InputService } from '../input.service';
 
@@ -8,6 +9,12 @@ export const DATEPICKER_VALUE_ACCESSOR =  {
     useExisting: forwardRef(() => DatepickerComponent),
     multi: true
 };
+
+interface Date {
+    day: number;
+    month: number;
+    year: number
+}
 
 @Component({
     selector: 'app-date-picker',
@@ -33,8 +40,9 @@ export class DatepickerComponent implements OnInit {
     currentDate = new Date().getDate();
     currentMonth = new Date().getMonth();
     currentYear = new Date().getFullYear();
-    selectedDate: any = new Date(this.currentYear, this.currentMonth, this.currentDate);
+    selectedDate: Date = {day: this.currentDate, month: this.currentMonth, year: this.currentYear};
     disabled = false;
+    principalValue: string = '';
     
     constructor(private translate: TranslateService, private inputService: InputService) { }
     
@@ -63,41 +71,46 @@ export class DatepickerComponent implements OnInit {
     }
     
     onChange = (date?: any) => {};
-    onTouched = () => {};
     
-    writeValue(value: Date) {
-        if (!value) return;
+    keyup ($target: any, form: any, field: any): any {
+        const {value} = $target;
         
-        this.selectedDate = {
-            year: value.getFullYear(),
-            month: value.getMonth(),
-            day: value.getDate()
+        if ( value.length !== 10 ) {
+            return false
         }
+        
+        this.selectedDate = this.convertDateToObject(value);
+        form.get(field).value = this.selectedDate;
     }
     
-    registerOnChange(fn: (date: Date) => void): void {
-        this.onChange = fn;
+    onDateSelect(value: NgbDate, form: any, field: any) {
+        const {day} = value
+        const {month} = value
+        const {year} = value
+
+        this.selectedDate = {day, month, year};
+        form.get(field).value = this.selectedDate;
     }
-    
-    // Allows Angular to register a function to call when the input has been touched.
-    // Save the function as a property to call later here.
-    registerOnTouched(fn: () => void): void {
-        this.onTouched = fn;
+
+    convertDateToObject (value: any): Date {
+        let language = 'pt';
+
+        let day: number = 0;
+        let month: number = 0;
+        let year: number = 0;
+
+        if ( language === 'pt' ) {
+            day = parseInt(value.substr(0, 2));
+            month = parseInt(value.substr(3, 2));
+            year = parseInt(value.substr(6, 4));
+        }
+        
+        if ( language === 'en' ) {
+            day = parseInt(value.substr(3, 2));
+            month = parseInt(value.substr(0, 2));
+            year = parseInt(value.substr(6, 4));
+        }
+
+        return {day, month, year}
     }
-    
-    // Allows Angular to disable the input.
-    setDisabledState(isDisabled: boolean): void {
-        this.disabled = isDisabled;
-    }
-    
-    // Write change back to parent
-    onDateChange(value: any) {
-        this.onChange(value);
-    }
-    
-    // Write change back to parent
-    onDateSelect(value: any) {
-        this.onChange(new Date(value.year, value.month - 1, value.day));
-    }
-    
 }
