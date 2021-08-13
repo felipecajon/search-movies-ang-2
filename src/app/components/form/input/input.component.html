@@ -1,17 +1,25 @@
-<div class="form-group {{containerClass}}" [formGroup]="form">
+<div class="form-group {{containerClass}} {{label ? 'has-label' : ''}}" [formGroup]="form">
     <label [attr.for]="id" class="{{labelClass}}" *ngIf="label"> {{label}} {{required ? '*' : ''}}</label>
     
-    <input 
-    class="form-control {{inputClass}}"
-    [ngClass]="classError(name, form)"
-    [formControlName]="name" 
-    [attr.id]="id" 
-    [attr.type]="type" 
-    [attr.placeholder]="placeholder" 
-    [attr.autocomplete]="autocomplete"
-    />
-
-    <div class="invalid-feedback" >
-        {{ getError(name, form) }}
+    <div class="input-group">
+        <input 
+        [attr.id]="id" 
+        [formControlName]="name" 
+        class="form-control {{inputClass}}"
+        [ngClass]="classError(name, form)"
+        [attr.type]="type" 
+        [attr.placeholder]="placeholder" 
+        [attr.autocomplete]="autocomplete"
+        />
+        
+        <div class="input-group-append">
+            <div class="input-group-text fix-border-radius">
+                <app-calendar size="15"></app-calendar>
+            </div>
+        </div>
+        
+        <div class="invalid-feedback" >
+            {{ getError(name, form) }}
+        </div>
     </div>
 </div>

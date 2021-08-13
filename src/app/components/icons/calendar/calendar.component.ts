@@ -3,17 +3,17 @@ import { Dimensions } from '../dimensions.model';
 import { IconsService } from '../icons.service';
 
 @Component({
-  selector: 'app-hamburguer-menu',
-  templateUrl: './hamburguer-menu.component.html',
-  styleUrls: ['./hamburguer-menu.component.scss']
+  selector: 'app-calendar',
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.scss']
 })
 
-export class HamburguerMenuComponent implements OnInit {
-  @Input() size: string = '30';
+export class CalendarComponent implements OnInit {
+  @Input() size: string = '15';
   @Input() classColor!: string;
   
-  width: number = 30;
-  height: number = 30;
+  width: number = 10;
+  height: number = 10;
 
   constructor(private iconService: IconsService) { }
 
@@ -22,5 +22,4 @@ export class HamburguerMenuComponent implements OnInit {
     this.width = dimensions.width;
     this.height = dimensions.height;
   }
-
 }

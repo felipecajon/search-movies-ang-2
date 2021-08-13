@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeartComponent } from '@components/icons/heart/heart.component';
 import { HeartbrokenComponent } from '@components/icons/heartbroken/heartbroken.component';
 import { HamburguerMenuComponent } from './hamburguer-menu/hamburguer-menu.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 
@@ -10,7 +11,8 @@ import { HamburguerMenuComponent } from './hamburguer-menu/hamburguer-menu.compo
   declarations: [
     HeartComponent,
     HeartbrokenComponent,
-    HamburguerMenuComponent
+    HamburguerMenuComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { HamburguerMenuComponent } from './hamburguer-menu/hamburguer-menu.compo
   exports: [
     HeartComponent,
     HeartbrokenComponent,
-    HamburguerMenuComponent
+    HamburguerMenuComponent,
+    CalendarComponent
   ]
 })
 

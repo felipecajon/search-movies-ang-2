@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpLoaderFactory } from '@app/translator';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { IconsModule } from '../icons/icons.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    IconsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

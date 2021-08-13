@@ -1,21 +1,28 @@
-<div class="form-group">
-    <label for="">
-        Data
-    </label>
+<div class="form-group {{containerClass}} {{label ? 'has-label' : ''}}" [formGroup]="form">
+    <label [attr.for]="id" class="{{labelClass}}" *ngIf="label"> {{label}} {{required ? '*' : ''}}</label>
     
     <div class="input-group">
-        <input class="form-control" 
-        placeholder="yyyy-mm-dd"
-        name="dp" 
-        [(ngModel)]="selectedDate"
+        <input
+        [attr.id]="id" 
+        [formControlName]="name" 
+        class="form-control {{inputClass}}"
+        [ngClass]="classError(name, form)"
+        [attr.placeholder]="placeholder"
+        [attr.autocomplete]="autocomplete"
+        [value]="selectedDate"
         ngbDatepicker #d="ngbDatepicker"
         (change)="onDateChange($event.target)"
-        (dateSelect)="onDateSelect($event)">
-        
+        (dateSelect)="onDateSelect($event)"
+        />
+
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
-                [[]]
+                <app-calendar size="15"></app-calendar>
             </button>
+        </div>
+
+        <div class="invalid-feedback" >
+            {{ getError(name, form) }}
         </div>
     </div>
 </div>

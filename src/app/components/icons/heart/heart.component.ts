@@ -8,7 +8,7 @@ import { IconsService } from '../icons.service';
   styleUrls: ['./heart.component.scss']
 })
 export class HeartComponent implements OnInit {
-  @Input() size!: string;
+  @Input() size: string = '30';
   @Input() classColor!: string;
   
   width: number = 30;

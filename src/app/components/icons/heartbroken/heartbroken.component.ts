@@ -9,7 +9,7 @@ import { IconsService } from '../icons.service';
 })
 
 export class HeartbrokenComponent implements OnInit {
-  @Input() size!: string;
+  @Input() size: string = '30';
   @Input() classColor!: string;
   
   width: number = 30;
