@@ -23,7 +23,6 @@ export class DatepickerComponent implements OnInit {
     @Input() type?: string = 'text';
     @Input() required!: string;
     @Input() customErrorMessage!: string;
-    @Input() autocomplete?: string;
     @Input() placeholder!: string;
     @Input() containerClass?: string;
     @Input() labelClass?: string;

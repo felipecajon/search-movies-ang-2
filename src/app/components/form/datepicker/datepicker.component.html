@@ -8,15 +8,16 @@
         class="form-control {{inputClass}}"
         [ngClass]="classError(name, form)"
         [attr.placeholder]="placeholder"
-        [attr.autocomplete]="autocomplete"
         [value]="selectedDate"
         ngbDatepicker #d="ngbDatepicker"
         (change)="onDateChange($event.target)"
         (dateSelect)="onDateSelect($event)"
+        (click)="d.toggle()"
+        autocomplete="off"
         />
 
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+            <button class="input-group-text fix-border-radius" (click)="d.toggle()" type="button">
                 <app-calendar size="15"></app-calendar>
             </button>
         </div>

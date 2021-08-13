@@ -9,6 +9,12 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IconsModule } from '../icons/icons.module';
 
+import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { CustomDatepickerI18n, I18n } from './datepicker/CustomDatepickerI18n';
+import { NgbDatePTParserFormatter } from './datepicker/NgbDatePTParserFormatter';
+
+
 @NgModule({
   declarations: [
     InputComponent,
@@ -32,7 +38,11 @@ import { IconsModule } from '../icons/icons.module';
     ReactiveFormsModule,
     InputComponent,
     DatepickerComponent
-  ]
+  ],
+  providers: [
+    [I18n, { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }],
+    [{provide: NgbDateParserFormatter, useClass: NgbDatePTParserFormatter}],
+],
 })
 
 export class CustomFormModule { }
