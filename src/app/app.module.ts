@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from '@ngrx/effects';
@@ -24,6 +23,7 @@ import { AuthService } from '@pages/login/auth.service';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './pages/register/register.component';
+import { HttpLoaderFactory } from './translator';
 
 @NgModule({
     declarations: [
@@ -59,7 +59,3 @@ import { RegisterComponent } from './pages/register/register.component';
 })
 
 export class AppModule { }
-
-export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http);
-}

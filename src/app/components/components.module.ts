@@ -5,17 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AppRoutingModule } from '@app/app-routing.module';
 
-import { HttpLoaderFactory } from '@app/app.module';
 import { IconsModule } from './icons/icons.module';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CustomFormModule } from './form/form.module';
+import { AuthService } from '@app/pages/login/auth.service';
+import { HttpLoaderFactory } from '@app/translator';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent,
+    FooterComponent
   ],
   imports: [
     AppRoutingModule,
@@ -36,7 +37,8 @@ import { CustomFormModule } from './form/form.module';
     FooterComponent,
     IconsModule,
     CustomFormModule
-  ]
+  ],
+  providers: [AuthService],
 })
 
 export class ComponentsModule { }
