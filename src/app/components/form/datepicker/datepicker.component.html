@@ -1,0 +1,23 @@
+<div class="form-group">
+    <label for="">
+        Data
+    </label>
+    
+    <div class="input-group">
+        <input class="form-control" 
+        placeholder="yyyy-mm-dd"
+        name="dp" 
+        [(ngModel)]="selectedDate"
+        ngbDatepicker #d="ngbDatepicker"
+        (change)="onDateChange($event.target)"
+        (dateSelect)="onDateSelect($event)">
+        
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                [[]]
+            </button>
+        </div>
+    </div>
+</div>
+<hr/>
+<pre>Model on date picker: {{ selectedDate | json }}</pre>

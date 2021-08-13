@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormService } from '@app/components/form/form.service';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,7 @@ import { FormService } from '@app/components/form/form.service';
 export class RegisterComponent implements OnInit {
   
   formRegister: FormGroup;
+  model!: NgbDateStruct;
   
   constructor(private formBuild: FormBuilder, private formService: FormService) {
     this.formRegister = this.formBuild.group({

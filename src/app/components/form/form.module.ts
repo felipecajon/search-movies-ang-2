@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from './input/input.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpLoaderFactory } from '@app/translator';
+import { DatepickerComponent } from './datepicker/datepicker.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    InputComponent
+    InputComponent,
+    DatepickerComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
+    NgbModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -23,7 +28,8 @@ import { HttpLoaderFactory } from '@app/translator';
   ],
   exports: [
     ReactiveFormsModule,
-    InputComponent
+    InputComponent,
+    DatepickerComponent
   ]
 })
 

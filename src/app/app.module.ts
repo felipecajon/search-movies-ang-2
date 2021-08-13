@@ -24,6 +24,7 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './pages/register/register.component';
 import { HttpLoaderFactory } from './translator';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
@@ -52,7 +53,8 @@ import { HttpLoaderFactory } from './translator';
             }
         }),
         EffectsModule.forRoot([MoviesEffects]),
-        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+        NgbModule
     ],
     providers: [AuthService],
     bootstrap: [AppComponent]
