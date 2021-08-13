@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { AppState } from '@app/app.state';
 import { Movie } from '@app/model/movie';
 import { Store } from '@ngrx/store';
@@ -19,13 +20,15 @@ export class SearchMoviesComponent implements OnInit {
     movie?: Movie;
     isFetching: boolean = false;
 
-    constructor( private formBuilder: FormBuilder, private searchMoviesSevice: SearchMoviesService, private auth: AuthService,  private store: Store<AppState>) {
+    constructor( private formBuilder: FormBuilder, private searchMoviesSevice: SearchMoviesService, private auth: AuthService,  private store: Store<AppState>, private route: ActivatedRoute) {
         this.auth.verifyIfLogged();
         
         this.formSearch = this.formBuilder.group({
             name: new FormControl('batman'),
             identification: new FormControl('')
         }, {validator: this.customValidation()})
+
+        this.route.params.subscribe( params => console.log(params));
     }
     
     customValidation() {

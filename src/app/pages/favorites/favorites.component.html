@@ -6,7 +6,9 @@
             </p>
             <ul class="list-group mt-5" *ngIf="favorites">
                 <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let movie of favorites">
-                    {{movie.title}}
+                    <a routerLink="['/search', movie.id]">
+                        {{movie.title}}
+                    </a>
                     
                     <button class="btn btn-primary" (click)="disfavorIt(movie.id)" translate>
                         generic.disfavor <span class="d-inline-block ms-2"><app-heartbroken size="15" classColor="svg-light"></app-heartbroken></span>

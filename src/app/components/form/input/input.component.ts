@@ -24,7 +24,8 @@ export class InputComponent implements OnInit {
 
   errorMessage: string = '';
   errorList: string[] = [];
-  
+  hasError: boolean = false;
+
   constructor(private translate: TranslateService) { }
 
   ngOnInit(): void {
@@ -35,18 +36,20 @@ export class InputComponent implements OnInit {
 
   getErrors (field: any) : string []{
     const local_errors = [];
-    
+
     this.isRequired(field) && local_errors.push('O Campo é obrigatorio');
     this.hasCustomError(field) && local_errors.push( this.getCustomError(field) );
     this.hasMinLength(field) && local_errors.push( 'Quantidade Mínima de Caracteres ' + this.form.get(field)?.errors?.minlength.requiredLength );
     this.hasMaxLength(field) && local_errors.push( 'Quantidade Máxima de Caracteres ' + this.form.get(field)?.errors?.maxlength.requiredLength );
     this.isEmail(field) && local_errors.push( 'Insira um e-mail válido' );
+    
+    this.hasError = local_errors.length > 0;
 
     return local_errors;
   }
 
   isTouched (field : any) {
-    return this.form.get(field)?.touched && !this.form.get(field)?.valid
+    return this.form.get(field)?.touched
   }
 
   isRequired (field: any): boolean {
@@ -73,10 +76,10 @@ export class InputComponent implements OnInit {
     return this.form.get(field)?.errors && this.form.get(field)?.errors?.customError
   }
 
-  hasError(field : any) {
+  classError(field : any) {
     return {
-      'is-invalid': this.isTouched(field),
-      'has-feedback': this.isTouched(field) 
+      'is-invalid': this.getError(field),
+      'has-feedback': this.hasError
     }
   }
 

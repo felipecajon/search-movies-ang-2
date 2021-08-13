@@ -23,6 +23,7 @@ import { AppComponent } from './app.component';
 import { AuthService } from '@pages/login/auth.service';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { FormsModule } from '@angular/forms';
         SearchMoviesComponent,
         LogoutComponent,
         MovieDetailsComponent,
-        FavoritesComponent
+        FavoritesComponent,
+        RegisterComponent
     ],
     imports: [
         BrowserModule,

@@ -3,15 +3,15 @@
     
     <input 
     class="form-control {{inputClass}}"
-    [ngClass]="hasError(name)"
+    [ngClass]="classError(name)"
     [formControlName]="name" 
     [attr.id]="id" 
     [attr.type]="type" 
     [attr.placeholder]="placeholder" 
     [attr.autocomplete]="autocomplete"
     />
-    
-    <div class="invalid-feedback" *ngIf="hasError(name)">
+
+    <div class="invalid-feedback" >
         {{ getError(name) }}
     </div>
 </div>
