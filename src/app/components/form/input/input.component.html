@@ -3,7 +3,7 @@
     
     <input 
     class="form-control {{inputClass}}"
-    [ngClass]="classError(name)"
+    [ngClass]="classError(name, form)"
     [formControlName]="name" 
     [attr.id]="id" 
     [attr.type]="type" 
@@ -12,6 +12,6 @@
     />
 
     <div class="invalid-feedback" >
-        {{ getError(name) }}
+        {{ getError(name, form) }}
     </div>
 </div>

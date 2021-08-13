@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { InputService } from '../input.service';
 
 @Component({
   selector: 'app-input',
@@ -22,68 +23,30 @@ export class InputComponent implements OnInit {
   @Input() labelClass?: string;
   @Input() inputClass?: string;
 
-  errorMessage: string = '';
-  errorList: string[] = [];
   hasError: boolean = false;
 
-  constructor(private translate: TranslateService) { }
+  constructor(private translate: TranslateService, private inputService: InputService) { }
 
   ngOnInit(): void {
     this.placeholder && this.translate.get(this.placeholder).subscribe(res => this.placeholder = res);
     this.label && this.translate.get(this.label).subscribe(res => this.label = res);
-    this.errorMessage && this.translate.get('form.error.required').subscribe(res => this.errorMessage = res);
   }
 
-  getErrors (field: any) : string []{
-    const local_errors = [];
-
-    this.isRequired(field) && local_errors.push('O Campo é obrigatorio');
-    this.hasCustomError(field) && local_errors.push( this.getCustomError(field) );
-    this.hasMinLength(field) && local_errors.push( 'Quantidade Mínima de Caracteres ' + this.form.get(field)?.errors?.minlength.requiredLength );
-    this.hasMaxLength(field) && local_errors.push( 'Quantidade Máxima de Caracteres ' + this.form.get(field)?.errors?.maxlength.requiredLength );
-    this.isEmail(field) && local_errors.push( 'Insira um e-mail válido' );
+  getError (field: any, form: any) : string {
+    const errors = this.getErrors(field, form);
+    this.hasError = errors.length > 0;
     
-    this.hasError = local_errors.length > 0;
-
-    return local_errors;
+    return errors[0];
   }
 
-  isTouched (field : any) {
-    return this.form.get(field)?.touched
+  getErrors (field: any, form: any) : string [] {
+    return this.inputService.getErrors(field, form);
   }
 
-  isRequired (field: any): boolean {
-    return this.isTouched(field) && this.form.get(field)!.errors?.required;
-  }
-
-  hasMinLength (field: any): boolean {
-    return this.isTouched(field) && this.form.get(field)!.errors?.minlength;
-  }
-
-  hasMaxLength (field: any): boolean {
-    return this.isTouched(field) && this.form.get(field)!.errors?.maxlength;
-  }
-
-  isEmail (field: any): boolean {
-    return this.isTouched(field) && this.form.get(field)!.errors?.email;
-  }
-
-  hasCustomError (field: any): boolean {
-    return this.form.get(field)?.errors !== null && this.form.get(field)?.errors?.customError !== undefined
-  }
-
-  getCustomError (field: any) : string {
-    return this.form.get(field)?.errors && this.form.get(field)?.errors?.customError
-  }
-
-  classError(field : any) {
+  classError(field : any, form: any) {
     return {
-      'is-invalid': this.getError(field),
+      'is-invalid': this.getError(field, form),
       'has-feedback': this.hasError
     }
-  }
-
-  getError (field: any) : string{
-    return this.getErrors(field)[0];
   }
 }

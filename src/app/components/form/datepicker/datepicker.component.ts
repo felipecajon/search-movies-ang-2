@@ -2,61 +2,62 @@ import { Component, OnInit, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, } from '@angular/forms';
 
 export const DATEPICKER_VALUE_ACCESSOR =  {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => DatepickerComponent),
-  multi: true
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => DatepickerComponent),
+    multi: true
 };
 
 @Component({
-  selector: 'app-date-picker',
-  templateUrl: './datepicker.component.html',
-  providers: [DATEPICKER_VALUE_ACCESSOR]
+    selector: 'app-date-picker',
+    templateUrl: './datepicker.component.html',
+    providers: [DATEPICKER_VALUE_ACCESSOR]
 })
 
 export class DatepickerComponent implements ControlValueAccessor {
-
-  selectedDate: any = new Date(2018, 1, 1);
-  disabled = false;
-
-  // Function to call when the date changes.
-  onChange = (date?: any) => {};
-
-  // Function to call when the date picker is touched
-  onTouched = () => {};
-
-  writeValue(value: Date) {
-    if (!value) return;
-    this.selectedDate = {
-      year: value.getFullYear(),
-      month: value.getMonth(),
-      day: value.getDate()
+    
+    currentDate = new Date().getDate();
+    currentMonth = new Date().getMonth();
+    currentYear = new Date().getFullYear();
+    selectedDate: any = new Date(this.currentYear, this.currentMonth, this.currentDate);
+    disabled = false;
+    
+    onChange = (date?: any) => {};
+    onTouched = () => {};
+    
+    writeValue(value: Date) {
+        if (!value) return;
+        
+        this.selectedDate = {
+            year: value.getFullYear(),
+            month: value.getMonth(),
+            day: value.getDate()
+        }
     }
-  }
-
-  registerOnChange(fn: (date: Date) => void): void {
-    this.onChange = fn;
-  }
-
-  // Allows Angular to register a function to call when the input has been touched.
-  // Save the function as a property to call later here.
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  // Allows Angular to disable the input.
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
-
-  // Write change back to parent
-  onDateChange(value: any) {
-    debugger
-    this.onChange(value);
-  }
-
-  // Write change back to parent
-  onDateSelect(value: any) {
-    this.onChange(new Date(value.year, value.month - 1, value.day));
-  }
-
+    
+    registerOnChange(fn: (date: Date) => void): void {
+        this.onChange = fn;
+    }
+    
+    // Allows Angular to register a function to call when the input has been touched.
+    // Save the function as a property to call later here.
+    registerOnTouched(fn: () => void): void {
+        this.onTouched = fn;
+    }
+    
+    // Allows Angular to disable the input.
+    setDisabledState(isDisabled: boolean): void {
+        this.disabled = isDisabled;
+    }
+    
+    // Write change back to parent
+    onDateChange(value: any) {
+        debugger
+        this.onChange(value);
+    }
+    
+    // Write change back to parent
+    onDateSelect(value: any) {
+        this.onChange(new Date(value.year, value.month - 1, value.day));
+    }
+    
 }
