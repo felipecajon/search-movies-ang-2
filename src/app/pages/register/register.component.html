@@ -14,7 +14,9 @@
             </div>
             
             <div class="col col-6">
-                <app-input id="email" name="email" label="e-mail" [form]="formRegister"></app-input>
+                <app-input id="email" name="email" label="e-mail" [hasIcon]="true" [form]="formRegister">
+                    <app-email size="16" ></app-email>
+                </app-input>
             </div>
 
             <div class="col col-6 mt-3">

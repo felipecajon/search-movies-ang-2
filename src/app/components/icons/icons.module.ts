@@ -4,6 +4,7 @@ import { HeartComponent } from '@components/icons/heart/heart.component';
 import { HeartbrokenComponent } from '@components/icons/heartbroken/heartbroken.component';
 import { HamburguerMenuComponent } from './hamburguer-menu/hamburguer-menu.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { EmailComponent } from './email/email.component';
 
 
 
@@ -12,7 +13,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     HeartComponent,
     HeartbrokenComponent,
     HamburguerMenuComponent,
-    CalendarComponent
+    CalendarComponent,
+    EmailComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     HeartComponent,
     HeartbrokenComponent,
     HamburguerMenuComponent,
-    CalendarComponent
+    CalendarComponent,
+    EmailComponent
   ]
 })
 

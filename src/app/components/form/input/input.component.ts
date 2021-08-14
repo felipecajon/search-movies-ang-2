@@ -22,6 +22,7 @@ export class InputComponent implements OnInit {
     @Input() containerClass?: string;
     @Input() labelClass?: string;
     @Input() inputClass?: string;
+    @Input() hasIcon?: boolean;
     
     hasError: boolean = false;
     

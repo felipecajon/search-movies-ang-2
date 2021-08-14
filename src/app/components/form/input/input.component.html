@@ -12,12 +12,12 @@
         [attr.autocomplete]="autocomplete"
         />
         
-        <div class="input-group-append">
+        <div class="input-group-append" *ngIf="hasIcon" >
             <div class="input-group-text fix-border-radius">
-                <app-calendar size="15"></app-calendar>
+                <ng-content></ng-content>
             </div>
         </div>
-        
+
         <div class="invalid-feedback" >
             {{ getError(name, form) }}
         </div>

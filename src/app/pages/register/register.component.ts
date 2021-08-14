@@ -30,7 +30,6 @@ export class RegisterComponent implements OnInit {
   
   submit () {
     this.formService.markControlAsTouched( this.formRegister );
-    console.log( this.formRegister.value );
     
     if ( this.formRegister.valid ) {
       console.log( this.formRegister.getRawValue() )
