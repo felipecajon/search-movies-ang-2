@@ -22,21 +22,16 @@ export class RegisterComponent implements OnInit {
       date: ['', Validators.required],
       password: ['', Validators.required],
       passwordConfirm: ['', Validators.required]
-    }, {validators: this.formService.conferePassword()})
-
+    }, {validators: [this.formService.conferePassword(), this.formService.isValidDate()]})
   }
   
   ngOnInit(): void {
   }
   
   submit () {
-    console.log(this.formRegister.getRawValue());
-    
-    console.log(this.inputService.isDate( this.formRegister.controls['date'] ));
-    
-
     this.formService.markControlAsTouched( this.formRegister );
-
+    console.log( this.formRegister.value );
+    
     if ( this.formRegister.valid ) {
       console.log( this.formRegister.getRawValue() )
     }

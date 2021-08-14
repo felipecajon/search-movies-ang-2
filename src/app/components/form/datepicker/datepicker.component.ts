@@ -10,15 +10,10 @@ export const DATEPICKER_VALUE_ACCESSOR =  {
     multi: true
 };
 
-interface Date {
-    day: number;
-    month: number;
-    year: number
-}
-
 @Component({
     selector: 'app-date-picker',
     templateUrl: './datepicker.component.html',
+    styleUrls: ['./datepicker.component.scss'],
     providers: [DATEPICKER_VALUE_ACCESSOR]
 })
 
@@ -37,12 +32,6 @@ export class DatepickerComponent implements OnInit {
     
     hasError: boolean = false;
     
-    currentDate = new Date().getDate();
-    currentMonth = new Date().getMonth();
-    currentYear = new Date().getFullYear();
-    selectedDate: Date = {day: this.currentDate, month: this.currentMonth, year: this.currentYear};
-    disabled = false;
-    principalValue: string = '';
     
     constructor(private translate: TranslateService, private inputService: InputService) { }
     
@@ -72,45 +61,19 @@ export class DatepickerComponent implements OnInit {
     
     onChange = (date?: any) => {};
     
-    keyup ($target: any, form: any, field: any): any {
-        const {value} = $target;
+    keyup ($target: any, form: any, field: any, $datePicker: any): any {
+        const { value } = $target;
         
+        form.get(field).setValue( value );
+
         if ( value.length !== 10 ) {
             return false
         }
-        
-        this.selectedDate = this.convertDateToObject(value);
-        form.get(field).value = this.selectedDate;
+
+        $datePicker.navigateTo( this.inputService.convertDate_String_To_Object( value ) );
     }
     
     onDateSelect(value: NgbDate, form: any, field: any) {
-        const {day} = value
-        const {month} = value
-        const {year} = value
-
-        this.selectedDate = {day, month, year};
-        form.get(field).value = this.selectedDate;
-    }
-
-    convertDateToObject (value: any): Date {
-        let language = 'pt';
-
-        let day: number = 0;
-        let month: number = 0;
-        let year: number = 0;
-
-        if ( language === 'pt' ) {
-            day = parseInt(value.substr(0, 2));
-            month = parseInt(value.substr(3, 2));
-            year = parseInt(value.substr(6, 4));
-        }
-        
-        if ( language === 'en' ) {
-            day = parseInt(value.substr(3, 2));
-            month = parseInt(value.substr(0, 2));
-            year = parseInt(value.substr(6, 4));
-        }
-
-        return {day, month, year}
+        form.get(field).setValue( this.inputService.convertDate_Object_To_String( value ) );
     }
 }

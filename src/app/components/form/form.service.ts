@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { InputService } from './input.service';
 
 @Injectable({
     providedIn: 'root'
@@ -7,7 +8,9 @@ import { FormGroup } from '@angular/forms';
 
 export class FormService {
     
-    constructor() { }
+    language: string = 'pt';
+    
+    constructor(private inputService: InputService) { }
     
     markControlAsTouched(formGroup: FormGroup) {
         (<any>Object).values(formGroup.controls).forEach((control: any) => {
@@ -26,6 +29,23 @@ export class FormService {
             
             if (password.value !== passWordConfirm.value) {
                 return passWordConfirm.setErrors({customError: 'As senhas não conferem'})
+            }
+        }
+    }
+    
+    isValidDate(field: string = 'date') {
+        return (group: FormGroup) => {
+            let $input = group.controls[field];
+            let { value } = $input;
+
+            if ( value.length === 0 ) {
+                return false;
+            }
+            
+            const isValidDate = this.inputService.isDate( value );
+            
+            if ( !isValidDate ) {
+                return $input.setErrors({customError: 'Data inválida'})
             }
         }
     }

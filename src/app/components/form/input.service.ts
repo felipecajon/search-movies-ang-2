@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { DatePickerDate } from './model/input.models';
+import * as moment from "moment";
+import { FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -7,6 +10,10 @@ import { AbstractControl } from '@angular/forms';
 
 export class InputService {
     
+    language: string = 'pt';
+    dateFormat_pt: string = 'DD-MM-YYYY';
+    dateFormat_en: string = 'MM-DD-YYYY';
+
     constructor() { }
     
     getErrors (field: any, form: any) : string [] {
@@ -40,38 +47,21 @@ export class InputService {
     isEmail (field: any, form: any): boolean {
         return this.isTouched(field, form) && form.get(field)!.errors?.email;
     }
-    
-    isDate(c: AbstractControl): boolean {
-        if ((c.value !== undefined && c.value !== '' && c.value != null)) {
-            
-            var {month} = c.value;
-            var {day} = c.value;
-            var {year} = c.value;
-            
-            if (month < 1 || month > 12) {
-                return false;
-            }
-            
-            if (day < 1 || day > 31) {
-                return false;
-            }
-            
-            if ((month === 4 || month === 6 || month === 9 || month === 11) && day === 31) {
-                return false;
-            }
-            
-            if (month == 2) { // check for february 29th
-                var isleap = (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0));
-                
-                if (day > 29 || (day === 29 && !isleap)) {
-                    return false;
-                }
-            }
+
+    isDate (value: string): boolean {
+        let dateFormat = '';
+
+        if ( this.language === 'pt' ) {
+            dateFormat = this.dateFormat_pt;
         }
-        
-        return true;
+
+        if ( this.language === 'en' ) {
+            dateFormat = this.dateFormat_en;
+        }
+
+        return moment(value, dateFormat).isValid() && value.length === 10;
     }
-    
+
     hasCustomError (field: any, form: any): boolean {
         return form.get(field)?.errors !== null && form.get(field)?.errors?.customError !== undefined
     }
@@ -82,6 +72,43 @@ export class InputService {
     
     getError (field: any, form: any) : string{
         return this.getErrors(field, form)[0];
+    }
+    
+    convertDate_String_To_Object (value: string, language = this.language): DatePickerDate {
+        let day: number = 0;
+        let month: number = 0;
+        let year: number = 0;
+        
+        if ( language === 'pt' ) {
+            day = parseInt( value.split('/')[0] );
+            month = parseInt( value.split('/')[1] );
+            year = parseInt( value.split('/')[2] );
+        }
+        
+        if ( language === 'en' ) {
+            day = parseInt( value.split('/')[1] );
+            month = parseInt( value.split('/')[0] );
+            year = parseInt( value.split('/')[2] );
+        }
+        
+        return {day, month, year}
+    }
+    
+    convertDate_Object_To_String (date: DatePickerDate, language = this.language) {
+        let newDate: string = '';
+        const padStart = (number : number) => {
+            return number < 10 ? `0${number}` : number; 
+        }
+        
+        if ( language === 'pt' ) {
+            newDate = `${padStart(date.day)}/${padStart(date.month)}/${date.year}`;
+        }
+        
+        if ( language === 'en' ) {
+            newDate = `${padStart(date.month)}/${padStart(date.day)}/${date.year}`;
+        }
+        
+        return newDate;
     }
     
 }

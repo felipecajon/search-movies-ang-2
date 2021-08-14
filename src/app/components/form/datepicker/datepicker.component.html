@@ -4,13 +4,13 @@
     <div class="input-group">
 
         <input
-        #start="ngbDatepicker"
+        #datePicker="ngbDatepicker"
         [attr.id]="id"
         type="text" 
         class="form-control {{inputClass}}"
         [ngClass]="classError(name, form)"
         [attr.placeholder]="placeholder"
-        (keyup)="keyup($event.target, form, name)"
+        (keyup)="keyup($event.target, form, name, datePicker)"
         (dateSelect)="onDateSelect($event, form, name)"
          [leadZeroDateTime]="true"
          mask="d0/M0/0000"
@@ -18,10 +18,10 @@
          ngbDatepicker
          />
 
-         <input type="hidden" class="js-date" [formControlName]="name" />
+         <input type="hidden" [formControlName]="name" />
         
         <div class="input-group-append">
-            <button class="input-group-text fix-border-radius" (click)="start.toggle()" type="button">
+            <button class="input-group-text fix-border-radius" (click)="datePicker.toggle()" type="button">
                 <app-calendar size="15"></app-calendar>
             </button>
         </div>
