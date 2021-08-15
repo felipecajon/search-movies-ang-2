@@ -6,35 +6,45 @@
             </p>
         </div>
     </div>
-
+    
     <form [formGroup]="formRegister" (submit)="submit()">
         <div class="row">
             <div class="col col-6">
-                <app-input id="name" name="name" label="name" [form]="formRegister"></app-input>
+                <app-input id="name" name="name" label="name" [form]="formRegister" ></app-input>
             </div>
             
             <div class="col col-6">
-                <app-input id="email" name="email" label="e-mail" [hasIcon]="true" [form]="formRegister">
+                <app-input id="email" name="email" label="e-mail" [hasIcon]="true"  [form]="formRegister">
                     <app-email size="16" ></app-email>
                 </app-input>
             </div>
-
+            
             <div class="col col-6 mt-3">
                 <app-date-picker id="date" name="date" label="Data" [form]="formRegister"></app-date-picker>
+            </div>
+            
+            <div class="col col-6 mt-3">
+                <app-input id="phone" name="phone" label="Telefone" [form]="formRegister" [mask]="phone_with_cod"></app-input>
             </div>
             
             <div class="col col-6">
                 <div class="row">
                     <div class="col col-6 mt-3">
-                        <app-input id="password" name="password" label="Senha" [form]="formRegister"></app-input>
+                        <app-input type="password" id="password" name="password" label="Senha" [form]="formRegister"></app-input>
                     </div>
-
+                    
                     <div class="col col-6 mt-3">
-                        <app-input id="passwordConfirm" name="passwordConfirm" label="Confirmação de Senha" [form]="formRegister"></app-input>
+                        <app-input type="password" id="passwordConfirm" name="passwordConfirm" label="Confirmação de Senha" [form]="formRegister"></app-input>
                     </div>
                 </div>
             </div>
-
+            
+            <div class="col">
+                <app-checkbox id="terms" name="terms" label="Aceito os Termos" [form]="formRegister"> </app-checkbox>
+            </div>
+        </div>
+        
+        <div class="row">
             <div class="col mt-4">
                 <div class="row d-flex justify-content-end">
                     <div class="col col-3">

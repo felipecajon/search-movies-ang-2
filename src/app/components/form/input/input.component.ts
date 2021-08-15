@@ -19,9 +19,11 @@ export class InputComponent implements OnInit {
     @Input() customErrorMessage!: string;
     @Input() autocomplete?: string;
     @Input() placeholder!: string;
+    @Input() maxLength: number = 255;
     @Input() containerClass?: string;
     @Input() labelClass?: string;
     @Input() inputClass?: string;
+    @Input() mask: string = '';
     @Input() hasIcon?: boolean;
     
     hasError: boolean = false;

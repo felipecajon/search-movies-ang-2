@@ -2,7 +2,7 @@
     <label [attr.for]="id" class="{{labelClass}}" *ngIf="label"> {{label}} {{required ? '*' : ''}}</label>
     
     <div class="input-group">
-
+        
         <input
         #datePicker="ngbDatepicker"
         [attr.id]="id"
@@ -12,20 +12,19 @@
         [attr.placeholder]="placeholder"
         (keyup)="keyup($event.target, form, name, datePicker)"
         (dateSelect)="onDateSelect($event, form, name)"
-         [leadZeroDateTime]="true"
-         mask="d0/M0/0000"
-         autocomplete="off"
-         ngbDatepicker
-         />
-
-         <input type="hidden" [formControlName]="name" />
+        mask="d0/M0/0000"
+        autocomplete="off"
+        ngbDatepicker
+        />
+        
+        <input type="hidden" [formControlName]="name" />
         
         <div class="input-group-append">
             <button class="input-group-text fix-border-radius" (click)="datePicker.toggle()" type="button">
                 <app-calendar size="15"></app-calendar>
             </button>
         </div>
-
+        
         <div class="invalid-feedback" >
             {{ getError(name, form) }}
         </div>

@@ -14,12 +14,14 @@ import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerI18n, I18n } from './datepicker/CustomDatepickerI18n';
 import { NgbDatePTParserFormatter } from './datepicker/NgbDatePTParserFormatter';
 
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { CheckboxComponent } from './checkbox/checkbox.component'
 
 @NgModule({
   declarations: [
     InputComponent,
-    DatepickerComponent
+    DatepickerComponent,
+    CheckboxComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
   exports: [
     ReactiveFormsModule,
     InputComponent,
-    DatepickerComponent
+    DatepickerComponent,
+    CheckboxComponent
   ],
   providers: [
     [I18n, { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }],

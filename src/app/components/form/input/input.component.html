@@ -1,4 +1,4 @@
-<div class="form-group {{containerClass}} {{label ? 'has-label' : ''}}" [formGroup]="form">
+<div class="form-group {{containerClass}}" [ngClass]="{'has-label': label}" [formGroup]="form">
     <label [attr.for]="id" class="{{labelClass}}" *ngIf="label"> {{label}} {{required ? '*' : ''}}</label>
     
     <div class="input-group">
@@ -10,6 +10,9 @@
         [attr.type]="type" 
         [attr.placeholder]="placeholder" 
         [attr.autocomplete]="autocomplete"
+        [mask]="mask"
+        [dropSpecialCharacters]="false"
+        [attr.maxLength]="maxLength"
         />
         
         <div class="input-group-append" *ngIf="hasIcon" >
