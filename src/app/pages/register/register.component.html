@@ -7,14 +7,14 @@
         </div>
     </div>
     
-    <form [formGroup]="formRegister" (submit)="submit()">
+    <form [formGroup]="formRegister" (submit)="submit()" autocomplete="off">
         <div class="row">
             <div class="col col-6">
                 <app-input id="name" name="name" label="name" [form]="formRegister" ></app-input>
             </div>
             
             <div class="col col-6">
-                <app-input id="email" name="email" label="e-mail" [hasIcon]="true"  [form]="formRegister">
+                <app-input id="email" name="email" label="e-mail" [hasIcon]="true"  [form]="formRegister" autocomplete="off">
                     <app-email size="16" ></app-email>
                 </app-input>
             </div>
@@ -39,8 +39,8 @@
                 </div>
             </div>
             
-            <div class="col">
-                <app-checkbox id="terms" name="terms" label="Aceito os Termos" [form]="formRegister"> </app-checkbox>
+            <div class="col col-md-12 mt-3">
+                <app-checkbox id="terms" name="terms" label="Aceito os Termos" [form]="formRegister" [checked]="true"> </app-checkbox>
             </div>
         </div>
         

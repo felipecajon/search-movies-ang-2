@@ -18,6 +18,7 @@ export class CheckboxComponent implements OnInit {
   @Input() containerClass?: string;
   @Input() labelClass?: string;
   @Input() inputClass?: string;
+  @Input() checked?: boolean;
   
   hasError: boolean = false;
   
@@ -38,9 +39,11 @@ export class CheckboxComponent implements OnInit {
     return this.inputService.getErrors(field, form);
   }
 
-  markThis ($input : any) {
-    debugger
-    this.form.get(this.name)?.setValue('true');
+  markThis () {
+    const $input = this.form.get(this.name);
+    const value = $input && $input.value;
+
+    $input?.setValue(!value);
   }
   
   classError(field : any, form: any) {
