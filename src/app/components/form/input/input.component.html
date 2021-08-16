@@ -6,7 +6,7 @@
         [attr.id]="id" 
         [formControlName]="name" 
         class="form-control {{inputClass}}"
-        [ngClass]="classError(name, form)"
+        [ngClass]="classError()"
         [attr.type]="type" 
         [attr.placeholder]="placeholder" 
         [attr.autocomplete]="autocomplete"
@@ -22,7 +22,7 @@
         </div>
 
         <div class="invalid-feedback" >
-            {{ getError(name, form) }}
+            {{ getError() }}
         </div>
     </div>
 </div>

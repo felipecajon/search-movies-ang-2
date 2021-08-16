@@ -35,20 +35,20 @@ export class InputComponent implements OnInit {
         this.label && this.translate.get(this.label).subscribe(res => this.label = res);
     }
     
-    getError (field: any, form: any) : string {
-        const errors = this.getErrors(field, form);
+    getError () : string {
+        const errors = this.getErrors();
         this.hasError = errors.length > 0;
         
         return errors[0];
     }
     
-    getErrors (field: any, form: any) : string [] {
-        return this.inputService.getErrors(field, form);
+    getErrors () : string [] {
+        return this.inputService.getErrors(this.name, this.form);
     }
     
-    classError(field : any, form: any) {
+    classError() {
         return {
-            'is-invalid': this.getError(field, form),
+            'is-invalid': this.getError(),
             'has-feedback': this.hasError
         }
     }

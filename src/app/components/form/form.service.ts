@@ -32,21 +32,4 @@ export class FormService {
             }
         }
     }
-    
-    isValidDate(field: string = 'date') {
-        return (group: FormGroup) => {
-            let $input = group.controls[field];
-            let { value } = $input;
-
-            if ( value.length === 0 ) {
-                return false;
-            }
-            
-            const isValidDate = this.inputService.isDate( value );
-            
-            if ( !isValidDate ) {
-                return $input.setErrors({customError: 'Data inválida'})
-            }
-        }
-    }
 }

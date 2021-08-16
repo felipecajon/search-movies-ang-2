@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DatePickerDate } from './model/input.models';
 import * as moment from "moment";
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,17 +13,18 @@ export class InputService {
     language: string = 'pt';
     dateFormat_pt: string = 'DD-MM-YYYY';
     dateFormat_en: string = 'MM-DD-YYYY';
-
+    
     constructor() { }
     
     getErrors (field: any, form: any) : string [] {
         const local_errors = [];
         
-        this.isRequired(field, form) && local_errors.push('O Campo é obrigatorio');
+        this.hasRequiredError(field, form) && local_errors.push('O Campo é obrigatorio');
         this.hasCustomError(field, form) && local_errors.push( this.getCustomError(field, form) );
-        this.hasMinLength(field, form) && local_errors.push( 'Quantidade Mínima de Caracteres ' + form.get(field, form)?.errors?.minlength.requiredLength );
-        this.hasMaxLength(field, form) && local_errors.push( 'Quantidade Máxima de Caracteres ' + form.get(field, form)?.errors?.maxlength.requiredLength );
-        this.isEmail(field, form) && local_errors.push( 'Insira um e-mail válido' );
+        this.hasMinLengthError(field, form) && local_errors.push( 'Quantidade Mínima de Caracteres ' + form.get(field, form)?.errors?.minlength.requiredLength );
+        this.hasMaxLengthError(field, form) && local_errors.push( 'Quantidade Máxima de Caracteres ' + form.get(field, form)?.errors?.maxlength.requiredLength );
+        this.hasEmailError(field, form) && local_errors.push( 'Insira um e-mail válido' );
+        this.hasDateError(field, form) && local_errors.push( 'Data inválida' );
         
         return local_errors;
     }
@@ -32,36 +33,48 @@ export class InputService {
         return form.get(field)?.touched
     }
     
-    isRequired (field: any, form: any): boolean {
+    hasRequiredError (field: any, form: any): boolean {
         return this.isTouched(field, form) && form.get(field)!.errors?.required;
     }
     
-    hasMinLength (field: any, form: any): boolean {
+    hasMinLengthError (field: any, form: any): boolean {
         return this.isTouched(field, form) && form.get(field)!.errors?.minlength;
     }
     
-    hasMaxLength (field: any, form: any): boolean {
+    hasMaxLengthError (field: any, form: any): boolean {
         return this.isTouched(field, form) && form.get(field)!.errors?.maxlength;
     }
     
-    isEmail (field: any, form: any): boolean {
+    hasEmailError (field: any, form: any): boolean {
         return this.isTouched(field, form) && form.get(field)!.errors?.email;
     }
-
-    isDate (value: string): boolean {
+    
+    hasDateError (field: any, form: any): boolean {
+        return this.isTouched(field, form) && form.get(field)!.errors?.date;
+    }
+    
+    isDate ($input: AbstractControl): any {
+        const inputService = new InputService();
+        const { language, dateFormat_pt, dateFormat_en, isValidDate } = inputService;
         let dateFormat = '';
 
-        if ( this.language === 'pt' ) {
-            dateFormat = this.dateFormat_pt;
+        if ( language === 'pt' ) {
+            dateFormat = dateFormat_pt;
         }
-
-        if ( this.language === 'en' ) {
-            dateFormat = this.dateFormat_en;
+        
+        if ( language === 'en' ) {
+            dateFormat = dateFormat_en;
         }
-
-        return moment(value, dateFormat).isValid() && value.length === 10;
+        
+        const isValid = isValidDate( $input.value, dateFormat );
+        
+        return isValid ? null : {date: 'Data inválida'}
     }
-
+    
+    isValidDate (date: string, dateFormat: string): boolean {
+        return date.length === 10 && moment(date, dateFormat).isValid();
+    }
+    
     hasCustomError (field: any, form: any): boolean {
         return form.get(field)?.errors !== null && form.get(field)?.errors?.customError !== undefined
     }
@@ -110,5 +123,4 @@ export class InputService {
         
         return newDate;
     }
-    
 }
