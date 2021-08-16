@@ -1,0 +1,14 @@
+<div class="container-radio  {{containerClass}}" [formGroup]="form">
+    <p class="mb-2 {{labelClass}}" *ngIf="label">
+        {{label}} {{required ? '*' : ''}}
+    </p>
+
+    <div class="form-check {{inputClass}}" [ngClass]="classError()" *ngFor="let option of options">
+        <input class="form-check-input" type="radio" [value]="option.code" [formControlName]="name"  [attr.id]="id + '-' + option.code">
+        <label class="form-check-label" [attr.for]="id + '-' + option.code"> {{option.value}} </label>
+    </div>
+
+    <div class="invalid-feedback" >
+        {{ getError() }}
+    </div>
+</div>

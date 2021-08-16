@@ -15,13 +15,17 @@ import { CustomDatepickerI18n, I18n } from './datepicker/CustomDatepickerI18n';
 import { NgbDatePTParserFormatter } from './datepicker/NgbDatePTParserFormatter';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { CheckboxComponent } from './checkbox/checkbox.component'
+import { CheckboxComponent } from './checkbox/checkbox.component';
+import { RadioComponent } from './radio/radio.component';
+import { SelectComponent } from './select/select.component'
 
 @NgModule({
   declarations: [
     InputComponent,
     DatepickerComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    RadioComponent,
+    SelectComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +46,9 @@ import { CheckboxComponent } from './checkbox/checkbox.component'
     ReactiveFormsModule,
     InputComponent,
     DatepickerComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    RadioComponent,
+    SelectComponent
   ],
   providers: [
     [I18n, { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }],

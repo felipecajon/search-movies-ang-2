@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormService } from '@app/components/form/form.service';
 import { InputService } from '@app/components/form/input.service';
 import { phone_with_cod } from '@app/components/form/masks';
+import { Option } from '@app/components/form/model/radio.models';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -16,6 +17,16 @@ export class RegisterComponent implements OnInit {
   formRegister: FormGroup;
   model!: NgbDateStruct;
   phone_with_cod: string = phone_with_cod;
+  gender_options: Option[] = [
+    {code: 'masc', value: 'Masculino'},
+    {code: 'fem', value: 'Feminino'},
+  ];
+  cities: Option[] = [
+    {code: '1', value: 'Mamborê'},
+    {code: '2', value: 'Campo Mourão'},
+    {code: '3', value: 'Curitiba'},
+    {code: '4', value: 'Maringa'},
+  ]
   
   constructor(private formBuild: FormBuilder, private formService: FormService, private inputService: InputService) {
     this.formRegister = this.formBuild.group({
@@ -24,6 +35,8 @@ export class RegisterComponent implements OnInit {
       date: ['', [Validators.required, this.inputService.isDate]],
       phone: ['', [Validators.required, Validators.minLength(14)]],
       terms: ['', Validators.required],
+      city: ['', Validators.required],
+      gender: ['', Validators.required],
       password: ['', Validators.required],
       passwordConfirm: ['', Validators.required]
     }, {validators: [this.formService.conferePassword()]})
@@ -34,6 +47,8 @@ export class RegisterComponent implements OnInit {
   
   submit () {
     this.formService.markControlAsTouched( this.formRegister );
+
+    console.table( this.formRegister.value )
     
     if ( this.formRegister.valid ) {
       console.log( this.formRegister.getRawValue() )

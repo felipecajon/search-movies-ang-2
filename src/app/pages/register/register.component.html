@@ -38,6 +38,14 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col col-md-12 mt-3">
+                <app-select id="city" name="city" label="Qual sua cidade" [options]="cities" [form]="formRegister" ></app-select>
+            </div>
+
+            <div class="col col-md-12 mt-3">
+                <app-radio id="gender" name="gender" label="Com qual Gênero se identifica?" [options]="gender_options" [form]="formRegister"></app-radio>
+            </div>
             
             <div class="col col-md-12 mt-3">
                 <app-checkbox id="terms" name="terms" label="Aceito os Termos" [form]="formRegister" [checked]="true"> </app-checkbox>
