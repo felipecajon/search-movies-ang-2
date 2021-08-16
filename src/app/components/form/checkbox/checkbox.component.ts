@@ -18,7 +18,6 @@ export class CheckboxComponent implements OnInit {
   @Input() containerClass?: string;
   @Input() labelClass?: string;
   @Input() inputClass?: string;
-  @Input() checked?: boolean;
   
   hasError: boolean = false;
   

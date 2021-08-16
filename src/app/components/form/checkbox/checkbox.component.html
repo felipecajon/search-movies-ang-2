@@ -8,7 +8,7 @@
     />
     
     <label class="form-check-label {{labelClass}}" [ngClass]="{'is-invalid': hasError}" (click)="markThis()" [attr.for]="id" *ngIf="label">
-      {{ label }} {{required ? '*' : ''}}
+      <span [innerHTML]="label | translate"> </span> {{required ? '*' : ''}}
     </label>
 
     <div class="invalid-feedback" style="margin-left: -18px;" >

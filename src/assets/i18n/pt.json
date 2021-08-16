@@ -53,5 +53,43 @@
             "genre": "Gênero:"
         },
         "emptyMovie": "Filme não encontrado"
+    },
+
+    "register": {
+        "form": {
+            "name": {
+                "label": "Nome",
+                "placeholder": "Nome"
+            },
+            "email": {
+                "label": "E-mail",
+                "placeholder": "E-mail"
+            },
+            "date": {
+                "label": "Data de Nascimento",
+                "placeholder": "Data de Nascimento"
+            },
+            "phone": {
+                "label": "Telefone de contato",
+                "placeholder": "Telefone de contato"
+            },
+            "password": {
+                "label": "Senha",
+                "placeholder": "Senha"
+            },
+            "passwordConfirm": {
+                "label": "Confirme sua Senha",
+                "placeholder": "Confirme sua Senha"
+            },
+            "city": {
+                "label": "Qual a sua cidade ?"
+            },
+            "gender": {
+                "label": "Com qual sexo você se identifica ?"
+            },
+            "terms": {
+                "label": "Aceito os <a href='{{link}}' target='_blank'> termos. </a>"
+            }
+        }
     }
 }

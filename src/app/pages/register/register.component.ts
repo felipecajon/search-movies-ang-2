@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormService } from '@app/components/form/form.service';
 import { InputService } from '@app/components/form/input.service';
-import { phone_with_cod } from '@app/components/form/masks';
+import { mask_phone_with_cod } from '@app/components/form/masks';
 import { Option } from '@app/components/form/model/radio.models';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { LoadFavorites } from '@app/store/movies/movies.actions';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -15,8 +16,7 @@ import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 export class RegisterComponent implements OnInit {
   
   formRegister: FormGroup;
-  model!: NgbDateStruct;
-  phone_with_cod: string = phone_with_cod;
+  mask_phone_with_cod: string = mask_phone_with_cod;
   gender_options: Option[] = [
     {code: 'masc', value: 'Masculino'},
     {code: 'fem', value: 'Feminino'},
@@ -26,9 +26,10 @@ export class RegisterComponent implements OnInit {
     {code: '2', value: 'Campo Mourão'},
     {code: '3', value: 'Curitiba'},
     {code: '4', value: 'Maringa'},
-  ]
+  ];
+  labelTerms: string = '';
   
-  constructor(private formBuild: FormBuilder, private formService: FormService, private inputService: InputService) {
+  constructor(private formBuild: FormBuilder, private formService: FormService, private inputService: InputService, private translate: TranslateService) {
     this.formRegister = this.formBuild.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -43,6 +44,7 @@ export class RegisterComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    this.translate.get('register.form.terms.label', {link: '/', innerHTML: 'true'}).subscribe(translate => this.labelTerms = translate);
   }
   
   submit () {
