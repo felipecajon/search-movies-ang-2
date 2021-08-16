@@ -25,6 +25,8 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './pages/register/register.component';
 import { HttpLoaderFactory } from './translator';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { userReducer } from './store/user/user.reducer';
+import { UserEffects } from './store/user/user.effects';
 
 @NgModule({
     declarations: [
@@ -43,7 +45,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         HttpClientModule,
         ComponentsModule,
         StoreModule.forRoot({
-            favorites: reducerMovies
+            favorites: reducerMovies,
+            user: userReducer,
         }),
         TranslateModule.forRoot({
             loader: {
@@ -52,7 +55,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
                 deps: [HttpClient]
             }
         }),
-        EffectsModule.forRoot([MoviesEffects]),
+        EffectsModule.forRoot([MoviesEffects, UserEffects]),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
         NgbModule
     ],

@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppState } from '@app/app.state';
 import { FormService } from '@app/components/form/form.service';
 import { InputService } from '@app/components/form/input.service';
 import { mask_phone_with_cod } from '@app/components/form/masks';
 import { Option } from '@app/components/form/model/radio.models';
 import { LoadFavorites } from '@app/store/movies/movies.actions';
+import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import * as ActionUser from "../../store/user/user.action";
 
 @Component({
   selector: 'app-register',
@@ -29,7 +32,7 @@ export class RegisterComponent implements OnInit {
   ];
   labelTerms: string = '';
   
-  constructor(private formBuild: FormBuilder, private formService: FormService, private inputService: InputService, private translate: TranslateService) {
+  constructor(private formBuild: FormBuilder, private formService: FormService, private inputService: InputService, private translate: TranslateService, private store: Store<AppState>) {
     this.formRegister = this.formBuild.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -53,7 +56,7 @@ export class RegisterComponent implements OnInit {
     console.table( this.formRegister.value )
     
     if ( this.formRegister.valid ) {
-      console.log( this.formRegister.getRawValue() )
+      this.store.dispatch( new ActionUser.SaveUser( this.formRegister.value ) )
     }
   }
 }

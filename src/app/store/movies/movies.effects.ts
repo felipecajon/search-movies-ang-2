@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Movie } from '@app/model/movie';
 import { SearchMoviesService } from '@app/pages/search-movies/search-movies.service';
 import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
