@@ -3,5 +3,5 @@ import { User } from './model/user';
 
 export interface AppState {
   readonly favorites: Favorite[];
-  readonly user: User[];
+  readonly user: User;
 }

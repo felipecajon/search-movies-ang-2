@@ -30,11 +30,13 @@ export class SearchMoviesService {
   }
   
   getMovies (form: any) {
+    debugger
     let configSearch = {
       params: {
         "apikey": apiKey_omdbapi,
         "plot": 'full',
-        "t": `${form.name}`
+        "t": `${form.name}`,
+        "i": `${form.identification}`
       }
     }
     

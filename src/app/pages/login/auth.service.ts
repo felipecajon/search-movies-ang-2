@@ -1,8 +1,10 @@
 import { Injectable, Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from './user.model';
-import { userCacheVariable, tokenCacheVariable } from "@app/constants";
+import { User } from '../../model/user';
+import { userCacheVariable, tokenCacheVariable, baseApi } from "@app/constants";
 import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -15,12 +17,12 @@ export class AuthService {
     message_errorLogin: string = '';
     isLoggedUser = new EventEmitter<boolean>();
     
-    constructor(private router: Router, private translate: TranslateService) {}
+    constructor(private router: Router, private translate: TranslateService, private http: HttpClient) {}
     
     verifyIfLogged () {
         const isLogged = this.isLogged();
         this.isLoggedUser.emit( isLogged );
-
+        
         if ( !isLogged ) {
             this.router.navigate(['login']);
         }
@@ -55,7 +57,8 @@ export class AuthService {
     }
     
     async login(user: User) {
-        this.isAuthenticated = user.name === 'Paiva' && user.password === '123';
+        const users: any = await this.getUsers().toPromise();
+        this.isAuthenticated = users.find((e: User) => e.email === user.email && e.password === user.password) !== undefined;
         
         if ( this.isAuthenticated ) {
             this.setUser(user);
@@ -64,9 +67,9 @@ export class AuthService {
         }
         
         this.isLoggedUser.emit( this.isAuthenticated );
-        this.translate.get('login.error.invalidLogin').subscribe((res: string) => this.message_errorLogin = res );
+        this.message_errorLogin = await this.translate.get('login.error.invalidLogin').toPromise();
         
-        return {isAuthenticated: this.isAuthenticated, message: !this.isAuthenticated ? this.message_errorLogin : ''};
+        return {isLogged: this.isAuthenticated, message: this.message_errorLogin};
     }
     
     logout () {
@@ -74,5 +77,9 @@ export class AuthService {
         this.removeUser();
         this.isLoggedUser.emit( false );
         this.router.navigate(['login']);
+    }
+    
+    getUsers (): Observable<User> {
+        return this.http.get(`${baseApi}/users`);
     }
 }

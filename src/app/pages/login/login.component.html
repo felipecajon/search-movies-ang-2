@@ -5,21 +5,21 @@
                 <p translate>
                     login.form.title
                 </p>
-
+                
                 <form [formGroup]="formLogin" class="" (submit)="submit()" novalidate >
                     <div class="row">
                         <div class="col-12">
-                            <app-input id="name" placeholder="login.form.user.placeholder" label="login.form.user.label" name="name" required="true" [form]="formLogin" ></app-input>
+                            <app-input id="email" placeholder="login.form.user.placeholder" label="login.form.user.label" name="email" required="true" [form]="formLogin" ></app-input>
                         </div>
-
+                        
                         <div class="col-12 mt-3">
                             <app-input id="password" label="login.form.password.label" name="password" type="password" [form]="formLogin"></app-input>
                         </div>
-
-                        <div class="col-12 mt-3 text-danger" *ngIf="hasError">
+                        
+                        <div class="col-12 mt-3 text-danger" *ngIf="messages_invalidLogin">
                             {{messages_invalidLogin}}
                         </div>
-    
+                        
                         <div class="col-12 mt-3">
                             <div class="row d-flex justify-content-between">
                                 <div class="col col-md-4">

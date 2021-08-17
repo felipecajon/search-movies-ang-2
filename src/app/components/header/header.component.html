@@ -9,7 +9,7 @@
             
             <div class="col"></div>
 
-            <div class="col-3 bg-primary" *ngIf="isLogged">
+            <div class="col-3 col-md-1 bg-primary" *ngIf="isLogged">
                 <div class="d-flex justify-content-center align-items-center h-100">
                     <div class="my-account-menu">
                         <div class="p-2">
@@ -19,7 +19,7 @@
                         <ul>
                             <li class="d-none">Meu Perfil</li>
                             <li>
-                                <a [routerLink]="['/search', '123']">
+                                <a [routerLink]="['/search']">
                                     Buscar Filmes
                                 </a>
                             </li>

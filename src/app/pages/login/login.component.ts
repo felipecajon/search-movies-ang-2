@@ -12,14 +12,13 @@ import { AuthService } from './auth.service';
 export class LoginComponent implements OnInit {
   formLogin: FormGroup;
   requiredError: boolean = false;
-  hasError: boolean = false;
   messages_invalidLogin: string = '';
 
   constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) {
     this.verifyLogin();
 
     this.formLogin = this.formBuilder.group({
-      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     })
   }
@@ -31,10 +30,12 @@ export class LoginComponent implements OnInit {
   }
 
   async submit () {
-    const {value} = this.formLogin;
-    const res = await this.auth.login(value).then();
-    this.hasError = !res.isAuthenticated;
-    this.messages_invalidLogin = res.message
+    const { value } = this.formLogin;
+    const response = await this.auth.login(value).then();
+
+    if (!response.isLogged) {
+      this.messages_invalidLogin = response.message;
+    }
   }
 
   ngOnInit(): void {

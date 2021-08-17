@@ -58,7 +58,6 @@ export class MovieDetailsComponent implements OnInit {
     }
     
     toggleFavorite () {
-        console.log( this.favorites$ )
         this.isFavorite ? this.disfavorIt() : this.favoriteIt();
     }
     

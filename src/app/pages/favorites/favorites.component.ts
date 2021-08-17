@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppState } from '@app/app.state';
-import { Movie } from '@app/model/movie';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as actionFavorites from "@store/movies/movies.actions";

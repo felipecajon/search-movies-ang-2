@@ -18,52 +18,16 @@
   ],
   "users": [
     {
-      "name": "felipe",
+      "name": "Felipe",
       "email": "felipecajon91@gmail.com",
-      "date": "20/08/2021",
-      "phone": "(41) 9898-9898",
+      "date": "31/01/1991",
+      "phone": "(41) 9983-2520",
       "terms": true,
-      "city": "3",
+      "city": "1",
       "gender": "masc",
       "password": "321",
       "passwordConfirm": "321",
       "id": 1
-    },
-    {
-      "name": "felipe",
-      "email": "felipecajon91@gmail.com",
-      "date": "31/01/1991",
-      "phone": "(41) 9898-9898",
-      "terms": true,
-      "city": "3",
-      "gender": "masc",
-      "password": "321",
-      "passwordConfirm": "321",
-      "id": 2
-    },
-    {
-      "name": "felipe",
-      "email": "felipecajon91@gmail.com",
-      "date": "31/01/1991",
-      "phone": "(41) 9898-9898",
-      "terms": true,
-      "city": "3",
-      "gender": "masc",
-      "password": "321",
-      "passwordConfirm": "321",
-      "id": 3
-    },
-    {
-      "name": "felipe",
-      "email": "felipecajon91@gmail.com",
-      "date": "31/01/1992",
-      "phone": "(41) 9898-9898",
-      "terms": true,
-      "city": "3",
-      "gender": "masc",
-      "password": "321",
-      "passwordConfirm": "321",
-      "id": 4
     }
   ]
 }
