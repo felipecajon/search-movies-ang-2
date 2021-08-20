@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AppState } from '@app/app.state';
@@ -16,7 +16,7 @@ import * as moviesAction from "../../store/movies/movies.actions";
     styleUrls: ['./search-movies.component.scss']
 })
 
-export class SearchMoviesComponent implements OnInit {
+export class SearchMoviesComponent implements OnInit, OnDestroy {
     formSearch: FormGroup;
     movie$: Observable<Movie> = this.searchMoviesSevice.movie;
     movie?: Movie;
@@ -38,7 +38,7 @@ export class SearchMoviesComponent implements OnInit {
             let controlName = group.controls['name'];
             let controlIdentification = group.controls['identification'];
 
-            if (controlName.value === '' && controlIdentification.value === '') {
+            if (controlName.touched && controlName.value === '' && controlIdentification.value === '') {
                 return controlName.setErrors({customError: 'O Campo é Obrigatorio'})
             }
         }
@@ -50,8 +50,10 @@ export class SearchMoviesComponent implements OnInit {
             this.isFetching = false;
         });
 
-        this.searchById();
         this.getFavorites();
+    }
+
+    ngOnDestroy() : void {
     }
 
     getFavorites () {
@@ -64,7 +66,7 @@ export class SearchMoviesComponent implements OnInit {
     }
 
     searchById () {
-        this.route.params.subscribe( params => {
+        this.route.queryParams.subscribe( params => {
             if (params.id) {
                 const movie: any = this.favorites.find( (e: Favorite) => e.id === parseInt(params.id) );
                 movie && this.formSearch.get('identification')?.setValue(movie.idMovie);
@@ -74,12 +76,10 @@ export class SearchMoviesComponent implements OnInit {
     }
     
     submit () {
-        
-        console.log(this.formSearch.value);
-        console.log(this.formSearch.valid);
+        this.formSearch.markAllAsTouched();
+        this.formSearch.get('name')?.updateValueAndValidity();
 
-
-        if ( this.formSearch.valid ) {
+        if ( !this.isFetching && this.formSearch.valid ) {
             this.isFetching = true;
             this.searchMoviesSevice.getMovies( this.formSearch.value );
         }
