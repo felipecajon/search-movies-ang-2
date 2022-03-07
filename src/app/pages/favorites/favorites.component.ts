@@ -27,7 +27,7 @@ export class FavoritesComponent implements OnInit {
     this.favorites$.subscribe((favorites: Favorite[]) => this.favorites = favorites);
   }
   
-  disfavorIt (id: number) {
+  disfavorIt (id: string) {
     this.store.dispatch(new actionFavorites.DisfavoriteIt({id}))
   }
 }

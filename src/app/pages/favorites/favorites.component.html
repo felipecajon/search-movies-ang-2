@@ -4,6 +4,7 @@
             <p class="fs-1 text-center mt-6">
                 Meus Favoritos
             </p>
+            
             <ul class="list-group mt-5" *ngIf="favorites">
                 <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let movie of favorites">
                     <a [routerLink]="['/search', movie.id]">

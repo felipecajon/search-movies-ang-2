@@ -12,13 +12,13 @@ import { Store } from '@ngrx/store';
 
 export class SearchMoviesService {
 
-  movie: EventEmitter<Movie> = new EventEmitter<Movie>();
-  currentMovie?: Movie;
+  currentMovie: Movie | undefined;
+  currentMovie$: EventEmitter<Movie> = new EventEmitter<Movie>();
 
   constructor(private http: HttpClient, private store: Store<AppState>) { }
   
   favoriteIt (data: Movie) {
-    return this.http.post(`${baseApi}/favorites`, {idMovie: data.idMovie, title: data.title});
+    return this.http.post(`${baseApi}/favorites`, {id: data.id, title: data.title});
   }
   
   disfavorIt (data: Movie) {
@@ -28,8 +28,23 @@ export class SearchMoviesService {
   getFavorites () : Observable<Movie[]> {
     return this.http.get<Movie[]>(`${baseApi}/favorites`);
   }
+
+  setMovie (res : any) {
+    this.currentMovie = {
+      id: res.imdbID,
+      title: res.Title,
+      description: res.Plot,
+      image: res.Poster,
+      director: res.Director,
+      actor: res.Actors,
+      year: res.Year,
+      genre: res.Genre
+    };
+
+    this.currentMovie$.emit(this.currentMovie);
+  }
   
-  getMovies (form: any) {
+  searchMovie (form: any) {
     let configSearch = {
       params: {
         "apikey": apiKey_omdbapi,
@@ -45,21 +60,12 @@ export class SearchMoviesService {
     this.http.get(url, configSearch).subscribe((res: any) => {
       
       if ( res.imdbID ) {
-        this.currentMovie = {
-          idMovie: res.imdbID,
-          title: res.Title,
-          description: res.Plot,
-          image: res.Poster,
-          director: res.Director,
-          actor: res.Actors,
-          year: res.Year,
-          genre: res.Genre
-        };
+        this.setMovie(res);
       } else {
         this.currentMovie = {};
       }
 
-      this.movie?.emit( this.currentMovie );
+      this.currentMovie$?.emit( this.currentMovie );
     },
     error => {
       console.log(error)

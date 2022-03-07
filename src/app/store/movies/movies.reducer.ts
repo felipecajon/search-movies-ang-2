@@ -13,6 +13,7 @@ export function reducerMovies (state: Movie[] = [], action: any) {
         return state.filter((e: Movie) => e.id !== action.movie.id);
         
         default:
+            console.log(action)
         return state;
     }
 }
