@@ -12,11 +12,17 @@ import { FooterComponent } from './footer/footer.component';
 import { CustomFormModule } from './form/form.module';
 import { AuthService } from '@app/pages/login/auth.service';
 import { HttpLoaderFactory } from '@app/translator';
+import { ToasterComponent } from './toaster/toaster.component';
+import { CloseComponent } from './toaster/utilities/icons/close/close.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ToasterComponent,
+    CloseComponent,
+    LoaderComponent
   ],
   imports: [
     AppRoutingModule,
@@ -36,7 +42,9 @@ import { HttpLoaderFactory } from '@app/translator';
     HeaderComponent,
     FooterComponent,
     IconsModule,
-    CustomFormModule
+    CustomFormModule,
+    ToasterComponent,
+    LoaderComponent
   ],
   providers: [AuthService],
 })

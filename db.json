@@ -14,20 +14,42 @@
       "idMovie": "tt0078346",
       "title": "Superman",
       "id": 8
+    },
+    {
+      "idMovie": "tt0096895",
+      "title": "Batman",
+      "id": 9
+    },
+    {
+      "idMovie": "tt11684020",
+      "title": "Teste",
+      "id": 10
     }
   ],
   "users": [
     {
-      "name": "Felipe",
+      "name": "Felipe Paiva",
       "email": "felipecajon91@gmail.com",
       "date": "31/01/1991",
-      "phone": "(41) 9983-2520",
+      "phone": "(41) 9983-2820",
       "terms": true,
-      "city": "1",
+      "city": "3",
       "gender": "masc",
       "password": "321",
       "passwordConfirm": "321",
       "id": 1
+    },
+    {
+      "name": "Felipe Paiva",
+      "email": "felipecajon91@gmail.com",
+      "date": "07/03/2022",
+      "phone": "(41) 9983-2820",
+      "terms": true,
+      "city": "3",
+      "gender": "masc",
+      "password": "123",
+      "passwordConfirm": "123",
+      "id": 2
     }
   ]
 }

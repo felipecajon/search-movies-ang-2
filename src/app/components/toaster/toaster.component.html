@@ -1,0 +1,11 @@
+<div class="container-toaster" *ngIf="active">
+    <div class="toaster-unit toaster-{{toaster.type}}" *ngFor="let toaster of toasters">
+        <p class="title" *ngIf="toaster.title" [innerHTML]="toaster.title"></p>
+
+        <div #el class="box-close" (click)="closeIt(el, toaster.id || '')">
+            <toaster-close size="12"></toaster-close>
+        </div>
+        
+        <div class="content" [innerHTML]="toaster.content"> </div>
+    </div>
+</div>

@@ -8,6 +8,12 @@ $spacer-5: $spacer * 3;
 $spacer-6: $spacer * 3.5;
 
 $spacers: (
+  -6: -$spacer-6,  
+  -5: -$spacer-5,
+  -4: -$spacer-4,
+  -3: -$spacer-3,
+  -2: -$spacer-2,
+  -1: -$spacer-1,
   0: 0,
   1: $spacer-1,
   2: $spacer-2,

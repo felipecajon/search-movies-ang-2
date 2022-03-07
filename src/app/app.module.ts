@@ -27,6 +27,13 @@ import { HttpLoaderFactory } from './translator';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { userReducer } from './store/user/user.reducer';
 import { UserEffects } from './store/user/user.effects';
+import { StyleGuideComponent } from './pages/style-guide/style-guide.component';
+import { ColorsComponent } from './pages/style-guide/colors/colors.component';
+import { ApresentationComponent } from './pages/style-guide/apresentation/apresentation.component';
+import { ToastersComponent } from './pages/style-guide/toasters/toasters.component';
+import { TypographyComponent } from './pages/style-guide/typography/typography.component';
+import { GridComponent } from './pages/style-guide/grid/grid.component';
+import { SpacingComponent } from './pages/style-guide/spacing/spacing.component';
 
 @NgModule({
     declarations: [
@@ -36,14 +43,21 @@ import { UserEffects } from './store/user/user.effects';
         LogoutComponent,
         MovieDetailsComponent,
         FavoritesComponent,
-        RegisterComponent
+        RegisterComponent,
+        StyleGuideComponent,
+        ColorsComponent,
+        ApresentationComponent,
+        ToastersComponent,
+        TypographyComponent,
+        GridComponent,
+        SpacingComponent
     ],
     imports: [
+        ComponentsModule,
         BrowserModule,
         FormsModule,
         AppRoutingModule,
         HttpClientModule,
-        ComponentsModule,
         StoreModule.forRoot({
             favorites: reducerMovies,
             user: userReducer,

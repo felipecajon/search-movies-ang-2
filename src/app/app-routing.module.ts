@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { SearchMoviesComponent } from './pages/search-movies/search-movies.component';
+import { StyleGuideComponent } from './pages/style-guide/style-guide.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: LoginComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'search/:id', component: SearchMoviesComponent},
   { path: 'favorites', component: FavoritesComponent},
   { path: 'register', component: RegisterComponent},
+  { path: 'style-guide', component: StyleGuideComponent},
 ];
 
 @NgModule({

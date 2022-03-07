@@ -3,7 +3,7 @@ import * as MovieActions from "./movies.actions";
 
 export function reducerMovies (state: Movie[] = [], action: any) {
     switch (action.type) {
-        case MovieActions.LOAD_FAVORITES_SUCCESS: 
+        case MovieActions.LOAD_FAVORITES_SUCCESS:
         return action.payload;
 
         case MovieActions.FAVORITE_IT_SUCCESS:
