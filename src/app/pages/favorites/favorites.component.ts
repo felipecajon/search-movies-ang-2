@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppState } from '@app/app.state';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import * as actionFavorites from "@store/movies/movies.actions";
 import { Favorite } from '@app/model/favorite';
 import { AuthService } from '../login/auth.service';
@@ -16,12 +16,10 @@ export class FavoritesComponent implements OnInit {
   
   readonly favorites$: Observable<Favorite[]> = this.store.select('favorites');
   favorites?: Favorite[];
-  
   constructor(private store: Store<AppState>, private auth: AuthService) { }
   
   ngOnInit(): void {
-    this.auth.verifyIfLogged();
-    this.getFavorites();
+    this.auth.isAuthenticated() && this.getFavorites();
   }
   
   getFavorites () {
