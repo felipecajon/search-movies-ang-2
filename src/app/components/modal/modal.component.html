@@ -1,0 +1,13 @@
+<div class="js-container-modal container-modal" [ngClass]="{'active': modal.isActive}" (click)="closeByContainer($event, modal)">
+    <div class="modal-unit" [style]="'max-width:' + modal.width + 'px;'">
+        <p class="title" *ngIf="modal.title" [innerHTML]="modal.title"></p>
+
+        <div class="box-close" (click)="closeIt(modal)">
+            <modal-close size="12"></modal-close>
+        </div>
+        
+        <div class="box-content">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

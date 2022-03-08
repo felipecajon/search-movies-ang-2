@@ -10,6 +10,7 @@ export class StyleGuideComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

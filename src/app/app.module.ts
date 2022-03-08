@@ -37,6 +37,7 @@ import { SpacingComponent } from './pages/style-guide/spacing/spacing.component'
 import { FormElementsComponent } from './pages/style-guide/form-elements/form-elements.component';
 import { ButtonsComponent } from './pages/style-guide/buttons/buttons.component';
 import { AlertsComponent } from './pages/style-guide/alerts/alerts.component';
+import { ModalsComponent } from './pages/style-guide/modals/modals.component';
 
 @NgModule({
     declarations: [
@@ -56,7 +57,8 @@ import { AlertsComponent } from './pages/style-guide/alerts/alerts.component';
         SpacingComponent,
         FormElementsComponent,
         ButtonsComponent,
-        AlertsComponent
+        AlertsComponent,
+        ModalsComponent
     ],
     imports: [
         ComponentsModule,
