@@ -133,6 +133,9 @@
             },
             "terms": {
                 "label": "Label Checkbox."
+            },
+            "action": {
+                "submit": "Validar Formulário"
             }
         }
     }
