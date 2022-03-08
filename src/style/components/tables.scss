@@ -1,0 +1,96 @@
+// @import '../../../style/variables.scss';
+
+$sizes: () !default;
+$sizes: map-merge(
+  (
+    25: 25%,
+    50: 50%,
+    75: 75%,
+    100: 100%,
+    auto: auto
+  ),
+  $sizes
+);
+
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+
+$breakpointsCustom: () !default;
+$breakpointsCustom: map-merge(
+  (
+    xs: $xs,
+    sm: $sm,
+    md: $md,
+    lg: $lg,
+    xl: $xl
+  ),
+  $breakpointsCustom
+);
+
+@each $break, $breakValue in $breakpointsCustom {
+    @media all and (max-width: $breakValue) {
+        @each $name, $value in $sizes {
+            .w-#{$name}-#{$break} {
+                width: $value !important;
+            }
+        }
+    }
+}
+
+@mixin table-responsived {
+    display: flex;
+    flex-wrap: wrap;
+
+    thead {
+        display: none;    
+    }
+
+    .header-responsive {
+        display: block;
+    }
+
+    tr {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    td, th {
+        display: block;
+        width: 100%;
+    }
+}
+
+.table-componente {
+    &, tbody, thead {
+        width: 100%;
+    }
+
+    th, td {
+        padding: 4px;
+    }
+
+    th, .header {
+        background-color: $primary;
+    }
+
+    tr:not([hidden]):nth-child(odd) {
+        td {
+            background-color: #ddd;
+        }
+    }
+
+    .header-responsive {
+        display: none;
+    }
+
+    @each $break, $breakValue in $breakpointsCustom {
+        &.table-#{$break} {
+            @media all and (max-width: $breakValue) {
+                @include table-responsived();
+            }
+        }
+    }
+}

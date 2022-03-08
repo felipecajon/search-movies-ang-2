@@ -38,6 +38,7 @@ import { FormElementsComponent } from './pages/style-guide/form-elements/form-el
 import { ButtonsComponent } from './pages/style-guide/buttons/buttons.component';
 import { AlertsComponent } from './pages/style-guide/alerts/alerts.component';
 import { ModalsComponent } from './pages/style-guide/modals/modals.component';
+import { TablesComponent } from './pages/style-guide/tables/tables.component';
 
 @NgModule({
     declarations: [
@@ -58,7 +59,8 @@ import { ModalsComponent } from './pages/style-guide/modals/modals.component';
         FormElementsComponent,
         ButtonsComponent,
         AlertsComponent,
-        ModalsComponent
+        ModalsComponent,
+        TablesComponent
     ],
     imports: [
         ComponentsModule,

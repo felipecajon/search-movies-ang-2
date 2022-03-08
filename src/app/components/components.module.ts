@@ -19,6 +19,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
 import { AlertComponent } from './alert/alert.component';
 import { CloseComponent } from './alert/utilities/icons/close/close.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CloseComponent } from './alert/utilities/icons/close/close.component';
     LoaderComponent,
     ModalComponent,
     AlertComponent,
-    CloseComponent
+    CloseComponent,
+    TableComponent
   ],
   imports: [
     AppRoutingModule,
@@ -54,7 +56,8 @@ import { CloseComponent } from './alert/utilities/icons/close/close.component';
     ToasterComponent,
     LoaderComponent,
     ModalComponent,
-    AlertComponent
+    AlertComponent,
+    TableComponent
   ],
   providers: [AuthService],
 })
