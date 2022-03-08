@@ -11,7 +11,7 @@ export const DATEPICKER_VALUE_ACCESSOR =  {
 };
 
 @Component({
-    selector: 'app-date-picker',
+    selector: 'datePicker-component',
     templateUrl: './datepicker.component.html',
     styleUrls: ['./datepicker.component.scss'],
     providers: [DATEPICKER_VALUE_ACCESSOR]

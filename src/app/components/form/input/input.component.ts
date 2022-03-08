@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { InputService } from '../input.service';
 
 @Component({
-    selector: 'app-input',
+    selector: 'simpleInput-component',
     templateUrl: './input.component.html',
     styleUrls: ['./input.component.scss']
 })

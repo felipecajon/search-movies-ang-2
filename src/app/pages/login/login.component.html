@@ -9,11 +9,11 @@
                 <form [formGroup]="formLogin" class="" (submit)="submit()" novalidate >
                     <div class="row">
                         <div class="col-12">
-                            <app-input id="email" placeholder="login.form.user.placeholder" label="login.form.user.label" name="email" required="true" [form]="formLogin" ></app-input>
+                            <simpleInput-component id="email" placeholder="login.form.user.placeholder" label="login.form.user.label" name="email" required="true" [form]="formLogin" ></simpleInput-component>
                         </div>
                         
                         <div class="col-12 mt-3">
-                            <app-input id="password" label="login.form.password.label" name="password" type="password" [form]="formLogin"></app-input>
+                            <simpleInput-component id="password" label="login.form.password.label" name="password" type="password" [form]="formLogin"></simpleInput-component>
                         </div>
                         
                         <div class="col-12 mt-3 text-danger" *ngIf="messages_invalidLogin">

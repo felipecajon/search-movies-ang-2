@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { InputService } from '../input.service';
 
 @Component({
-  selector: 'app-checkbox',
+  selector: 'checkbox-component',
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss']
 })

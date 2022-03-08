@@ -10,31 +10,31 @@
     <form [formGroup]="formRegister" (submit)="submit()" autocomplete="off">
         <div class="row">
             <div class="col col-6">
-                <app-input id="name" name="name" label="register.form.name.label" placeholder="register.form.name.placeholder" [form]="formRegister" required="true" ></app-input>
+                <simpleInput-component id="name" name="name" label="register.form.name.label" placeholder="register.form.name.placeholder" [form]="formRegister" required="true" ></simpleInput-component>
             </div>
             
             <div class="col col-6">
-                <app-input id="email" name="email" label="register.form.email.label" placeholder="register.form.email.placeholder" [hasIcon]="true"  [form]="formRegister" required="true">
+                <simpleInput-component id="email" name="email" label="register.form.email.label" placeholder="register.form.email.placeholder" [hasIcon]="true"  [form]="formRegister" required="true">
                     <app-email size="16" ></app-email>
-                </app-input>
+                </simpleInput-component>
             </div>
             
             <div class="col col-6 mt-3">
-                <app-date-picker id="date" name="date" label="register.form.date.label" placeholder="register.form.date.placeholder" [form]="formRegister" required="true"></app-date-picker>
+                <datePicker-component id="date" name="date" label="register.form.date.label" placeholder="register.form.date.placeholder" [form]="formRegister" required="true"></datePicker-component>
             </div>
             
             <div class="col col-6 mt-3">
-                <app-input id="phone" name="phone" label="register.form.phone.label" placeholder="register.form.phone.placeholder" [form]="formRegister" [mask]="mask_phone_with_cod" required="true"></app-input>
+                <simpleInput-component id="phone" name="phone" label="register.form.phone.label" placeholder="register.form.phone.placeholder" [form]="formRegister" [mask]="mask_phone_with_cod" required="true"></simpleInput-component>
             </div>
             
             <div class="col col-6">
                 <div class="row">
                     <div class="col col-6 mt-3">
-                        <app-input type="password" id="password" name="password" placeholder="register.form.password.label" label="register.form.password.label" [form]="formRegister" required="true"></app-input>
+                        <simpleInput-component type="password" id="password" name="password" placeholder="register.form.password.label" label="register.form.password.label" [form]="formRegister" required="true"></simpleInput-component>
                     </div>
                     
                     <div class="col col-6 mt-3">
-                        <app-input type="password" id="passwordConfirm" name="passwordConfirm" label="register.form.passwordConfirm.label" placeholder="register.form.passwordConfirm.label" [form]="formRegister" required="true"></app-input>
+                        <simpleInput-component type="password" id="passwordConfirm" name="passwordConfirm" label="register.form.passwordConfirm.label" placeholder="register.form.passwordConfirm.label" [form]="formRegister" required="true"></simpleInput-component>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
             </div>
             
             <div class="col col-md-12 mt-3">
-                <app-checkbox id="terms" name="terms" [label]="labelTerms" [form]="formRegister" required="true"> </app-checkbox>
+                <checkbox-component id="terms" name="terms" [label]="labelTerms" [form]="formRegister" required="true"> </checkbox-component>
             </div>
         </div>
         

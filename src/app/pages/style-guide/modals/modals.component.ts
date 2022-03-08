@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ModalModel } from "@app/components/modal/modal.model";
 
 @Component({
-  selector: "app-modals-instance",
+  selector: "modal-components-instance",
   templateUrl: "./modals.component.html",
   styleUrls: ["./modals.component.scss"],
 })

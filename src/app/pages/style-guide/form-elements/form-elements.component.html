@@ -6,31 +6,31 @@
     <form [formGroup]="formElements" (submit)="submit()" autocomplete="off">
         <div class="row">
             <div class="col col-6">
-                <app-input id="name" name="name" label="styleGuide.form.name.label" placeholder="styleGuide.form.name.placeholder" [form]="formElements" required="true" ></app-input>
+                <simpleInput-component id="name" name="name" label="styleGuide.form.name.label" placeholder="styleGuide.form.name.placeholder" [form]="formElements" required="true" ></simpleInput-component>
             </div>
             
             <div class="col col-6">
-                <app-input id="email" name="email" label="styleGuide.form.email.label" placeholder="styleGuide.form.email.placeholder" [hasIcon]="true"  [form]="formElements" required="true">
+                <simpleInput-component id="email" name="email" label="styleGuide.form.email.label" placeholder="styleGuide.form.email.placeholder" [hasIcon]="true"  [form]="formElements" required="true">
                     <app-email size="16" ></app-email>
-                </app-input>
+                </simpleInput-component>
             </div>
             
             <div class="col col-6 mt-3">
-                <app-date-picker id="date" name="date" label="styleGuide.form.date.label" placeholder="styleGuide.form.date.placeholder" [form]="formElements" required="true"></app-date-picker>
+                <datePicker-component id="date" name="date" label="styleGuide.form.date.label" placeholder="styleGuide.form.date.placeholder" [form]="formElements" required="true"></datePicker-component>
             </div>
             
             <div class="col col-6 mt-3">
-                <app-input id="phone" name="phone" label="styleGuide.form.phone.label" placeholder="styleGuide.form.phone.placeholder" [form]="formElements" [mask]="mask_phone_with_cod" required="true"></app-input>
+                <simpleInput-component id="phone" name="phone" label="styleGuide.form.phone.label" placeholder="styleGuide.form.phone.placeholder" [form]="formElements" [mask]="mask_phone_with_cod" required="true"></simpleInput-component>
             </div>
             
             <div class="col col-6">
                 <div class="row">
                     <div class="col col-6 mt-3">
-                        <app-input type="password" id="password" name="password" placeholder="styleGuide.form.password.label" label="styleGuide.form.password.label" [form]="formElements" required="true"></app-input>
+                        <simpleInput-component type="password" id="password" name="password" placeholder="styleGuide.form.password.label" label="styleGuide.form.password.label" [form]="formElements" required="true"></simpleInput-component>
                     </div>
                     
                     <div class="col col-6 mt-3">
-                        <app-input type="password" id="passwordConfirm" name="passwordConfirm" label="styleGuide.form.passwordConfirm.label" placeholder="styleGuide.form.passwordConfirm.label" [form]="formElements" required="true"></app-input>
+                        <simpleInput-component type="password" id="passwordConfirm" name="passwordConfirm" label="styleGuide.form.passwordConfirm.label" placeholder="styleGuide.form.passwordConfirm.label" [form]="formElements" required="true"></simpleInput-component>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
             </div>
             
             <div class="col col-md-12 mt-3">
-                <app-checkbox id="terms" name="terms" [label]="labelTerms" [form]="formElements" required="true"> </app-checkbox>
+                <checkbox-component id="terms" name="terms" [label]="labelTerms" [form]="formElements" required="true"> </checkbox-component>
             </div>
         </div>
         

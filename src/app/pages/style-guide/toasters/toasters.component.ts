@@ -3,7 +3,7 @@ import { ToasterModel, ToasterType } from '@app/components/toaster/toaster.model
 import { ToasterService } from '@app/components/toaster/toaster.service';
 
 @Component({
-  selector: 'app-toasters',
+  selector: 'toaster-components',
   templateUrl: './toasters.component.html',
   styleUrls: ['./toasters.component.scss']
 })
