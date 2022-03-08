@@ -17,6 +17,8 @@ import { CloseComponent as CloseToasterComponent } from './toaster/utilities/ico
 import { CloseComponent as  CloseModalComponent } from './modal/utilities/icons/close/close.component';
 import { LoaderComponent } from './loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
+import { AlertComponent } from './alert/alert.component';
+import { CloseComponent } from './alert/utilities/icons/close/close.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ModalComponent } from './modal/modal.component';
     CloseToasterComponent,
     CloseModalComponent,
     LoaderComponent,
-    ModalComponent
+    ModalComponent,
+    AlertComponent,
+    CloseComponent
   ],
   imports: [
     AppRoutingModule,
@@ -49,7 +53,8 @@ import { ModalComponent } from './modal/modal.component';
     CustomFormModule,
     ToasterComponent,
     LoaderComponent,
-    ModalComponent
+    ModalComponent,
+    AlertComponent
   ],
   providers: [AuthService],
 })

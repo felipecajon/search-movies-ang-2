@@ -1,0 +1,9 @@
+<div class="alert alert-{{alert.type}}" role="alert" *ngIf="alert.isActive">
+    <div>
+        {{alert.content}}
+    </div>
+
+    <div class="close-alert" (click)="closeIt(alert)">
+        <close-alert size="12"></close-alert>
+    </div>
+</div>
