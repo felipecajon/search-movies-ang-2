@@ -94,5 +94,46 @@
                 "label": "Aceito os <a href='{{link}}' target='_blank'> termos. </a>"
             }
         }
+    },
+
+    "styleGuide": {
+        "messages": {
+            "success": "Cadastro Realizado com Sucesso!"
+        },
+        "form": {
+            "name": {
+                "label": "Simple Input",
+                "placeholder": "Placeholder"
+            },
+            "email": {
+                "label": "E-mail",
+                "placeholder": "E-mail"
+            },
+            "date": {
+                "label": "Date",
+                "placeholder": "Date"
+            },
+            "phone": {
+                "label": "Masked Phone",
+                "placeholder": "Masked Phone"
+            },
+            "password": {
+                "label": "Password",
+                "placeholder": "Password"
+            },
+            "passwordConfirm": {
+                "label": "Confirm Password",
+                "placeholder": "Confirm Password"
+            },
+            "city": {
+                "label": "Select"
+            },
+            "gender": {
+                "label": "Title Radio Button"
+            },
+            "terms": {
+                "label": "Label Checkbox."
+            }
+        }
     }
 }

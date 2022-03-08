@@ -34,6 +34,9 @@ import { ToastersComponent } from './pages/style-guide/toasters/toasters.compone
 import { TypographyComponent } from './pages/style-guide/typography/typography.component';
 import { GridComponent } from './pages/style-guide/grid/grid.component';
 import { SpacingComponent } from './pages/style-guide/spacing/spacing.component';
+import { FormElementsComponent } from './pages/style-guide/form-elements/form-elements.component';
+import { ButtonsComponent } from './pages/style-guide/buttons/buttons.component';
+import { AlertsComponent } from './pages/style-guide/alerts/alerts.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +53,10 @@ import { SpacingComponent } from './pages/style-guide/spacing/spacing.component'
         ToastersComponent,
         TypographyComponent,
         GridComponent,
-        SpacingComponent
+        SpacingComponent,
+        FormElementsComponent,
+        ButtonsComponent,
+        AlertsComponent
     ],
     imports: [
         ComponentsModule,
